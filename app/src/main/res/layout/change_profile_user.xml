@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:paddingLeft="40dp"
+    android:paddingRight="40dp"
+    android:paddingTop="35dp"
+    android:paddingBottom="27dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:id="@+id/username"
+            android:layout_width="234dp"
+            android:layout_height="wrap_content"
+            android:text="Dr. Bagus Budiono"
+            android:fontFamily="@font/inter_medium"
+            android:layout_gravity="center"
+            android:textSize="16sp"
+            android:layout_marginTop="13dp"
+            android:layout_marginBottom="20dp"
+
+            android:textAlignment="center"
+            />
+
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="111dp"
+            android:layout_height="111dp"
+            android:id="@+id/thumbnail_card"
+            app:cardCornerRadius="100dp"
+            app:cardElevation="0dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp">
+            <ImageView
+
+                android:id="@+id/doctor_photo"
+                android:layout_width="111dp"
+                android:layout_height="111dp"
+                android:src="@drawable/doctor_1"
+                android:scaleType="centerCrop" />
+
+        </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/change_profile_picture"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ganti_foto"
+            android:textSize="16sp"
+            android:textAlignment="center"
+            android:inputType="textCapSentences"
+            android:textColor="@color/primaryColor"
+            android:layout_marginTop="9dp"
+            android:fontFamily="@font/inter_medium"
+            android:background="@android:color/transparent"
+            />
+
+        <TextView
+            android:layout_width="234dp"
+            android:layout_height="wrap_content"
+            android:text="Nama"
+            android:fontFamily="@font/poppins_medium"
+            android:textAlignment="textStart"
+            android:textSize="16sp"
+            android:textColor="@color/textColorSecondary"
+            android:layout_marginTop="33dp"
+            android:layout_marginBottom="10dp"
+            />
+
+        <EditText
+            android:id="@+id/username_input"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/button_secondary"
+            android:fontFamily="@font/poppins_medium"
+            android:drawableLeft="@drawable/user"
+            android:padding="12dp"
+            android:hint="Username"
+            android:drawablePadding="16dp"
+            android:layout_marginBottom="26dp"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/done_change"
+            android:layout_width="122dp"
+            android:layout_height="wrap_content"
+            android:text="Selesai"
+            android:layout_marginTop="31dp"
+            android:layout_gravity="center"
+            android:inputType="textCapCharacters"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/poppins_medium"
+            android:background="@drawable/button_primary"
+            />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterPasienActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- res/layout/example_activity.xml -->
+        <androidx.fragment.app.FragmentContainerView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/fragment_container_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="18dp"
+            android:background="@color/primaryColor"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:padding="17dp">
+
+                <Button
+                    android:id="@+id/back_to_home"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="-10dp"
+                    android:background="@android:color/transparent"
+                    android:drawableLeft="@drawable/ic_baseline_arrow_back_24" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_semibold"
+                    android:text="Registrasi"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="370dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="17dp"
+            android:layout_marginRight="17dp"
+            android:background="@drawable/card_alert"
+            android:orientation="vertical"
+            android:paddingLeft="17dp"
+            android:paddingTop="20dp"
+            android:paddingRight="17dp"
+            android:paddingBottom="20dp">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_info_24" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Pemesanan hanya dapat dilakukan H-1"
+                    android:textAlignment="textStart"
+                    android:textColor="#B87A04"
+                    android:layout_marginLeft="30dp"
+                    />
+            </FrameLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="17dp"
+            android:layout_marginTop="28dp"
+            android:fontFamily="@font/inter_semibold"
+            android:text="Detail Pemesan"
+            android:textSize="16sp" />
+
+
+        <!--        Name Form-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="17dp"
+            android:layout_marginTop="12dp"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nama" />
+
+            <EditText
+                android:layout_width="370dp"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:background="@drawable/form_user_input"
+                android:layout_marginTop="10dp"
+                />
+        </LinearLayout>
+
+        <!--        NIK Form-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="17dp"
+            android:layout_marginTop="20dp"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="NIK" />
+
+            <EditText
+                android:layout_width="370dp"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:background="@drawable/form_user_input"
+                android:layout_marginTop="10dp"
+                />
+        </LinearLayout>
+
+        <!--        Alamat Form-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="17dp"
+            android:layout_marginTop="20dp"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Alamat" />
+
+            <EditText
+                android:layout_width="370dp"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:background="@drawable/form_user_input"
+                android:layout_marginTop="10dp"
+                />
+        </LinearLayout>
+
+        <!--        No HP Form-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="17dp"
+            android:layout_marginTop="20dp"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="No HP" />
+
+            <EditText
+                android:layout_width="370dp"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:background="@drawable/form_user_input"
+                android:layout_marginTop="10dp"
+                />
+        </LinearLayout>
+
+        <!--        No BPJS Form-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="17dp"
+            android:layout_marginTop="20dp"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="No BPJS" />
+
+            <EditText
+                android:layout_width="370dp"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:background="@drawable/form_user_input"
+                android:layout_marginTop="10dp"
+                />
+        </LinearLayout>
+
+        <!--        Keluhan Form-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="17dp"
+            android:layout_marginTop="20dp"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Keluhan" />
+
+            <EditText
+                android:layout_width="370dp"
+                android:layout_height="105dp"
+                android:padding="16dp"
+                android:inputType="textMultiLine"
+                android:background="@drawable/form_user_input"
+                android:layout_marginTop="10dp"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="17dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/inter_semibold"
+            android:text="Detail Pasien"
+            android:textSize="16sp" />
+
+        <!--        Month Form-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="17dp"
+            android:layout_marginTop="20dp"
+            >
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sama dengan pemesanan" />
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:checked="true"
+                    app:useMaterialThemeColors="false"
+                    android:layout_gravity="end"
+                    android:layout_marginRight="17dp"
+                    android:theme="@style/SCBSwitch"
+                    />
+            </FrameLayout>
+
+            <EditText
+                android:layout_width="370dp"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:background="@drawable/form_user_input"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/poppins_medium"
+                android:hint="April Mei"
+                android:textSize="14sp"
+                android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+                />
+        </LinearLayout>
+
+        <!--        Poli yang di tuju Form-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="17dp"
+            android:layout_marginTop="20dp"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Poli yang dituju" />
+
+            <Button
+                android:id="@+id/search_poli"
+                android:layout_width="370dp"
+                android:layout_height="60dp"
+                android:paddingLeft="16dp"
+                android:paddingTop="16dp"
+                android:background="@drawable/form_user_input"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/poppins_medium"
+                android:hint="Pilih poli"
+                android:gravity="start"
+                android:textSize="14sp"
+                android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+                />
+        </LinearLayout>
+
+        <!--        Dokter Form-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="17dp"
+            android:layout_marginTop="20dp"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Dokter" />
+
+            <Button
+                android:id="@+id/search_dokter"
+                android:layout_width="370dp"
+                android:layout_height="60dp"
+                android:paddingLeft="16dp"
+                android:paddingTop="16dp"
+                android:background="@drawable/form_user_input"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/poppins_medium"
+                android:hint="Pilih dokter"
+                android:gravity="start"
+                android:textSize="14sp"
+                android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="17dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/inter_semibold"
+            android:text="Detail Waktu"
+            android:textSize="16sp" />
+
+        <!--        Dokter Form-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="17dp"
+            android:layout_marginTop="20dp"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pilih tanggal daftar" />
+
+            <Button
+                android:id="@+id/date_picker"
+                android:layout_width="370dp"
+                android:layout_height="60dp"
+                android:paddingLeft="16dp"
+                android:paddingTop="16dp"
+                android:background="@drawable/form_user_input"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/poppins_medium"
+                android:hint="Pilih tanggal"
+                android:gravity="start"
+                android:drawableRight="@drawable/calendar"
+                android:textSize="14sp"
+                android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+                />
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pilih Waktu"
+            android:layout_marginLeft="17dp"
+            android:layout_marginTop="20dp"
+            />
+
+<!--        Waktu Form-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+            android:layout_marginTop="20dp"
+            >
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="09:00"
+                android:textColor="#717171"
+                android:padding="15dp"
+                android:backgroundTint="#D8D8D8"
+                android:layout_marginRight="8dp"
+                />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="09:30"
+                android:textColor="#717171"
+                android:padding="15dp"
+                android:backgroundTint="#D8D8D8"
+                android:layout_marginRight="8dp"
+                />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10:00"
+                android:textColor="#717171"
+                android:padding="15dp"
+                android:backgroundTint="#D8D8D8"
+                android:layout_marginRight="8dp"
+                />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10:30"
+                android:textColor="#717171"
+                android:backgroundTint="#D8D8D8"
+                android:padding="15dp"
+                android:layout_marginRight="8dp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="370dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="17dp"
+            android:layout_marginRight="17dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/card_alert_danger"
+            android:orientation="vertical"
+            android:paddingLeft="17dp"
+            android:paddingTop="20dp"
+            android:paddingRight="17dp"
+            android:paddingBottom="20dp">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_info_24_danger" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Maaf jadwal hari ini sudah penuh"
+                    android:textAlignment="center"
+                    android:textColor="#DF2626" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/registrasi_pasien"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:inputType="textCapSentences"
+            android:textSize="14dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Pesan Antrian"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="37dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:paddingLeft="120dp"
+            android:paddingRight="120dp"
+            android:background="@drawable/button_primary"
+            android:theme="@style/Theme.ClickCare"
+             />
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,68 @@
+<resources>
+    <string name="app_name">Click Care</string>
+    <string name="desc_onboarding">Registrasi dan konsultasi dengan dokter berpengalaman, aman dan nyaman</string>
+    <string name="welcome_onboarding">Selamat Datang</string>
+    <string name="welcome_login">Selamat datang di Click Care</string>
+    <string name="welcome_register">Silahkan isi data diri berikut</string>
+    <string name="daftar_sekarang"><u>Daftar Sekarang</u></string>
+    <string name="masuk"><u>Masuk</u></string>
+    <string name="izinkan_click_care_untuk_mengakses_lokasi_perangkat_ini">
+        Izinkan <b><font color='#28C1E4'>Click Care</font></b> untuk mengakses lokasi perangkat ini ?</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ganti_foto"><u>Ganti Foto</u></string>
+    <string name="text_info_app_one">Click Care adalah Aplikasi mobile yang akan mempermudah masyarakat di dalam melakukan registrasi dan konsulatasi terkait pasien rumah sakit guna mengurangi waktu tunggu yang cukup lama. .</string>
+    <string name="text_info_app_two_part_one">
+        1. Pada saat user/pelanggan mengunduh click care, sistem akan meminta persetujuan user/pelanggan untuk mengaktifkan lokasi guna memberikan informasi lokasi user/pelanggan.
+    </string>
+    <string name="text_info_app_two_part_two">
+        2. User diminta untuk mengisi nama beserta
+            alamat email, guna untuk membuat akun
+            user/pelanggan.
+    </string>
+    <string name="text_info_app_two_part_three">
+        3. Click Care hanya akan memberikan notifikasi
+            pada saat :
+            - Berhasil melakukan registrasi
+            - Waktu jadwal konsultasi user/pelanggan
+               sudah pada waktunya
+            - Berhasil membuat No. Antrian
+    </string>
+    <string name="text_info_app_three_part_one">
+        1. Click Care tidak bertanggung jawab atas
+           kerugian yang ditimbulkan akibat kegagalan
+           anda dalam melakukan pembayaran,
+           termasuk terbatasnya informasi dari fitur-fitur
+           aplikasi kami.
+    </string>
+    <string name="text_info_app_three_part_two">
+        2. Click Care tidak bisa memastikan :
+        - Click Care akan selalu bisa memberikan
+           Pelayanan sesuai dengan kehendak
+           user/pelanggan.
+        - Click Care tidak bisa selalu memastikan
+           user/pelanggan akan merasa aman dan
+           nyaman terhadap pelayanan Click Care.
+    </string>
+    <string name="text_info_app_four_one">
+        Jika anda mengalami kendala atau ada
+        Pertanyaan Lainnya terkait penggunaan
+        aplikasi Click Care, Anda bisa mengirim
+        email ke :
+        <u>csclickcare@apk.id</u>
+    </string>
+    <string name="lupa_password">Lupa Password</string>
+    <string name="reciever_1">Selamat malam, Saya drg. Wanti, dokter gigi umum. Ada yang bisa saya bantu ?</string>
+    <string name="dr_bagus_budiono_m_sc_sp_a_adalah_dokterspesialis_jantung_dari_fakultas_kedokteran_universitas_asembagus_tahun_2015_beliau_aktif_praktik_di_rsud_pasar_minggu">dr. Bagus Budiono, M.Sc, Sp. A adalah DokterSpesialis Jantung dari Fakultas Kedokteran Universitas Asembagus, tahun 2015, beliau aktif praktik di RSUD Pasar Minggu.</string>
+    <string name="respon_dokter_cepat_dan_langsung_diberikan_solusi_ats_keluhan_penyakit_yang_saya_alami">Respon dokter cepat dan langsung diberikan solusi ats keluhan penyakit yang saya alami.</string>
+    <string name="dokter_nya_informatif_banget_dan_sangat_profesional">Dokter nya informatif banget dan sangat profesional.</string>
+    <string name="title_activity_forgot_password">ForgotPasswordActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+</resources>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/bottomSheetContainer"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bottom_sheet_bacground"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pilih Poli"
+        android:textSize="18sp"
+        android:fontFamily="@font/inter_semibold"
+        android:textAlignment="center"
+        android:textColor="#4F576D"
+        android:layout_marginTop="17dp"
+        />
+
+    <EditText
+        android:layout_width="328dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/button_secondary"
+        android:drawableLeft="@drawable/ic_baseline_search_24"
+        android:drawablePadding="16dp"
+        android:fontFamily="@font/poppins_medium"
+        android:hint="Cari Poli.."
+        android:padding="18dp"
+        android:textSize="12sp"
+        android:layout_marginTop="24dp"
+        />
+
+    <Button
+        android:id="@+id/poli_gigi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:text="poli gigi umum"
+        android:textAlignment="textStart"
+        android:padding="20dp"
+        android:textColor="#121212"
+        android:textSize="13sp"
+        android:fontFamily="@font/poppins_medium"
+        android:layout_marginTop="16dp"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+    <Button
+        android:id="@+id/poli_bedah_syaraf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:text="poli bedah syaraf"
+        android:textAlignment="textStart"
+        android:padding="20dp"
+        android:textColor="#121212"
+        android:textSize="13sp"
+        android:fontFamily="@font/poppins_medium"
+        android:layout_marginTop="16dp"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+    <Button
+        android:id="@+id/poli_tht"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:text="poli THT"
+        android:textAlignment="textStart"
+        android:padding="20dp"
+        android:textColor="#121212"
+        android:textSize="13sp"
+        android:fontFamily="@font/poppins_medium"
+        android:layout_marginTop="16dp"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+    <Button
+        android:id="@+id/poli_jantung"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:text="poli jantung"
+        android:textAlignment="textStart"
+        android:padding="20dp"
+        android:textColor="#121212"
+        android:textSize="13sp"
+        android:fontFamily="@font/poppins_medium"
+        android:layout_marginTop="16dp"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+    <Button
+        android:id="@+id/poli_anak"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:text="poli anak"
+        android:textAlignment="textStart"
+        android:padding="20dp"
+        android:textColor="#121212"
+        android:textSize="13sp"
+        android:fontFamily="@font/poppins_medium"
+        android:layout_marginTop="16dp"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+</LinearLayout>

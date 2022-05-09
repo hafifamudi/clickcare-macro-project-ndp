@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primaryColor">#28C1E4</color>
+    <color name="secondaryColor">#ED8323</color>
+    <color name="formColor">#F9F9F9</color>
+    <color name="textColorSecondary">#ACAEB9</color>
+    <color name="textColorPrimary">#595959</color>
+    <color name="textColorTitle">#A09898</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+
+</resources>

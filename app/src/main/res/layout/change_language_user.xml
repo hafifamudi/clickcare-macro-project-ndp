@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:paddingLeft="40dp"
+    android:paddingRight="40dp"
+    android:paddingTop="35dp"
+    android:paddingBottom="27dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="234dp"
+            android:layout_height="wrap_content"
+            android:text="Ganti Bahasa"
+            android:fontFamily="@font/inter_medium"
+            android:layout_gravity="center"
+            android:textSize="16sp"
+            android:layout_marginTop="13dp"
+            android:layout_marginBottom="20dp"
+
+            android:textAlignment="center"
+            />
+
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+            <RadioButton android:id="@+id/radio_pirates"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:text="Bahasa Indonesia"
+                android:padding="20dp"
+                android:background="@drawable/button_secondary" />
+
+            <RadioButton android:id="@+id/radio_ninjas"
+                android:layout_width="250dp"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                android:text="English"
+                android:padding="20dp"
+                android:background="@drawable/button_secondary"/>
+        </RadioGroup>
+
+        <Button
+            android:layout_width="122dp"
+            android:layout_height="wrap_content"
+            android:text="Selesai"
+            android:layout_marginTop="31dp"
+            android:layout_gravity="center"
+            android:inputType="textCapCharacters"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/poppins_medium"
+            android:background="@drawable/button_primary"
+            />
+    </LinearLayout>
+
+</LinearLayout>

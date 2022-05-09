@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:paddingLeft="40dp"
+    android:paddingRight="40dp"
+    android:paddingTop="35dp"
+    android:paddingBottom="27dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:layout_width="234dp"
+            android:layout_height="wrap_content"
+            android:text="Nilai Dokter"
+            android:fontFamily="@font/inter_medium"
+            android:layout_gravity="center"
+            android:textSize="18sp"
+            android:layout_marginBottom="37dp"
+            android:layout_marginTop="21dp"
+            android:textAlignment="center"
+            />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:id="@+id/thumbnail_card"
+            app:cardCornerRadius="100dp"
+            app:cardElevation="0dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp">
+            <ImageView
+
+                android:id="@+id/doctor_photo"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:src="@drawable/doctor_1"
+                android:scaleType="centerCrop" />
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:layout_width="234dp"
+            android:layout_height="wrap_content"
+            android:text="Dr. Bagus Budiono"
+            android:fontFamily="@font/inter_medium"
+            android:layout_gravity="center"
+            android:textSize="16sp"
+            android:layout_marginTop="13dp"
+            android:textAlignment="center"
+            />
+
+        <RatingBar
+            android:id="@+id/rating_bar_doctor"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="29dp"
+            android:numStars="5"
+            android:layout_gravity="center"
+            android:stepSize="1"
+            />
+
+
+        <TextView
+            android:layout_width="234dp"
+            android:layout_height="wrap_content"
+            android:text="Bagaimana pengalaman Anda?"
+            android:fontFamily="@font/inter_medium"
+            android:layout_gravity="center"
+            android:textSize="16sp"
+            android:layout_marginTop="13dp"
+            android:textAlignment="center"
+            />
+
+        <EditText
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/button_secondary"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/poppins_medium"
+            android:padding="18dp"
+            android:layout_marginBottom="26dp"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="42dp"
+            >
+
+            <Button
+                android:layout_width="122dp"
+                android:layout_height="wrap_content"
+                android:text="Tidak Sekarang"
+                android:layout_gravity="start"
+                android:inputType="textCapCharacters"
+                android:textSize="12sp"
+                android:textColor="@color/textColorSecondary"
+                android:fontFamily="@font/poppins_medium"
+                android:background="@drawable/button_secondary"
+                />
+
+            <Button
+                android:layout_marginLeft="16dp"
+                android:layout_width="122dp"
+                android:layout_height="wrap_content"
+                android:text="Kirim"
+                android:layout_gravity="end"
+                android:inputType="textCapCharacters"
+                android:textSize="12sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/poppins_medium"
+                android:background="@drawable/button_primary"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

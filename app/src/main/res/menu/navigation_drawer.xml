@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:id="@+id/group1"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/spesifikasi"
+            android:title="Spesifikasi">
+            <menu>
+                <item
+                    android:title="Dokter Gigi"
+                    app:actionLayout="@layout/widget_check" />
+                <item
+                    android:title="Dokter Spasialis jantung"
+                    app:actionLayout="@layout/widget_check" />
+            </menu>
+        </item>
+    </group>
+
+    <group
+        android:id="@+id/group2"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/pengalaman"
+            android:title="Pengalaman">
+            <menu>
+                <item
+                    android:title="Kurang dari 5 Tahun"
+                    app:actionLayout="@layout/widget_check" />
+                <item
+                    android:title="5-10 tahun"
+                    app:actionLayout="@layout/widget_check" />
+                <item
+                    android:title="10+ tahun"
+                    app:actionLayout="@layout/widget_check" />
+            </menu>
+        </item>
+    </group>
+
+    <group
+        android:id="@+id/group3"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/Gender"
+            android:title="Gender">
+            <menu>
+                <item
+                    android:title="Pria"
+                    app:actionLayout="@layout/widget_check" />
+                <item
+                    android:title="Wanita"
+                    app:actionLayout="@layout/widget_check" />
+            </menu>
+        </item>
+    </group>
+
+    <group
+        android:id="@+id/group4"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/harga_konsultasi"
+            android:title="Harga Konsultasi">
+            <menu>
+                <item
+                    android:title=""
+                    app:actionLayout="@layout/button_consultant"
+                     />
+            </menu>
+        </item>
+    </group>
+
+    <group
+        android:id="@+id/group5"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/bintang"
+            android:title="Bintang">
+            <menu>
+                <item
+                    android:title=""
+                    app:actionLayout="@layout/button_star_consultant"
+                    />
+            </menu>
+        </item>
+    </group>
+</menu>

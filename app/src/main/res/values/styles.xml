@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MaterialCalendarTheme" parent="@style/ThemeOverlay.MaterialComponents.MaterialCalendar">
+        <item name="colorPrimary">@color/primaryColor</item>
+
+        <!-- Header panel -->
+        <item name="materialCalendarHeaderLayout">@style/MaterialCalendar.HeaderLayout1</item>
+        <!-- Buttons -->
+        <item name="buttonBarPositiveButtonStyle">@style/TextButton.Dialog1</item>
+        <item name="buttonBarNegativeButtonStyle">@style/TextButton.Dialog1</item>
+    </style>
+
+    <style name="MaterialCalendar.HeaderLayout1" parent="Widget.MaterialComponents.MaterialCalendar.HeaderLayout">
+        <!--<item name="android:background">?attr/colorPrimary</item>-->
+        <item name="android:background">@color/primaryColor</item>
+    </style>
+    <style name="TextButton.Dialog1" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/white</item>
+        <item name="backgroundTint">@color/secondaryColor</item>
+    </style>
+
+
+<!--    <style name="ShapeAppearance.App.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">-->
+<!--        <item name="cornerFamily">cut</item>-->
+<!--    </style>-->
+
+<!--    <style name="ShapeAppearance.App.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">-->
+<!--        <item name="cornerSize">30dp</item>-->
+<!--    </style>-->
+
+</resources>

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "544710025218",
+    "project_id": "clickcare-app",
+    "storage_bucket": "clickcare-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:544710025218:android:3b3cadc70b88889dabc71b",
+        "android_client_info": {
+          "package_name": "com.docoding.clickcare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "544710025218-cgc2nmmq98pbdkocvucco00h2c7j95vu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.docoding.clickcare",
+            "certificate_hash": "15826b1def9e56a2dbc2444943c0dcde85d6c45d"
+          }
+        },
+        {
+          "client_id": "544710025218-ibrm3ordgri5qic9qd4c13115c0krimc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAp5wOs3TtBw7u_BRSr7eMQvH_zgJ0nuc0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "544710025218-ibrm3ordgri5qic9qd4c13115c0krimc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

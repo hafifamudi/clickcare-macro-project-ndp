@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginRight="20dp"
+    >
+
+    <Button
+        android:id="@+id/min"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/form_user_input"
+        android:fontFamily="@font/poppins_medium"
+        android:inputType="textCapSentences"
+        android:layout_marginRight="20dp"
+        android:text="MIN"
+        android:textColor="@color/textColorSecondary"
+        android:textSize="14dp" />
+
+    <Button
+        android:id="@+id/max"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/form_user_input"
+        android:fontFamily="@font/poppins_medium"
+        android:inputType="textCapSentences"
+        android:text="MAX"
+        android:textColor="@color/textColorSecondary"
+        android:textSize="14dp" />
+</LinearLayout>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".fragments.FeedbackDoctorFragement">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:src="@drawable/user_review"
+            />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="16dp"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_medium"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:text="Zainun Muhtadi" />
+
+                <ImageView
+                    android:layout_width="79dp"
+                    android:layout_height="19dp"
+                    android:src="@drawable/star_review"
+                    />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="textEnd"
+                android:text="14 Apr" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_marginTop="6dp"
+            android:layout_marginLeft="50dp"
+            android:layout_width="277dp"
+            android:layout_height="wrap_content"
+            android:text="@string/respon_dokter_cepat_dan_langsung_diberikan_solusi_ats_keluhan_penyakit_yang_saya_alami" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:src="@drawable/user_review"
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="16dp"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_medium"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:text="Rizki Maulana" />
+
+                <ImageView
+                    android:layout_width="79dp"
+                    android:layout_height="19dp"
+                    android:src="@drawable/star_review"
+                    />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="textEnd"
+                android:text="19 Mei" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_marginTop="6dp"
+            android:layout_marginLeft="50dp"
+            android:layout_width="277dp"
+            android:layout_height="wrap_content"
+            android:text="@string/dokter_nya_informatif_banget_dan_sangat_profesional" />
+    </LinearLayout>
+
+</LinearLayout>
