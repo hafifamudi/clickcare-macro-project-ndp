@@ -1,4 +1,4 @@
-package com.docoding.clickcare;
+package com.docoding.clickcare.activities.pasien;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -28,7 +28,7 @@ public class DoctorConsultantActivity extends AppCompatActivity {
 
         binding.doctorList.setHasFixedSize(true);
 
-        binding.filterNavbar.setOnClickListener(new View.OnClickListener() {
+        binding.filterDrawer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 binding.drawerLayout.open();
