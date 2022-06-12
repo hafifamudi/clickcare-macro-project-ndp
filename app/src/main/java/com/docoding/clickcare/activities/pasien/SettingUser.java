@@ -1,19 +1,22 @@
-package com.docoding.clickcare;
+package com.docoding.clickcare.activities.pasien;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.Fragment;
+
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
-import android.view.TextureView;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -21,8 +24,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.docoding.clickcare.databinding.ActivityDetailDoctorBinding;
-import com.docoding.clickcare.databinding.ActivitySettingUserBinding;
+import com.docoding.clickcare.R;
+import com.docoding.clickcare.databinding.FragmentHomeUserLoginBinding;
+import com.docoding.clickcare.databinding.FragmentSettingUserBinding;
 import com.docoding.clickcare.model.UserModel;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -45,9 +49,10 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SettingUserActivity extends AppCompatActivity {
-    private ActivitySettingUserBinding binding;
 
+public class SettingUser extends Fragment {
+    private FragmentSettingUserBinding binding;
+    private Dialog dialog;
     private FirebaseDatabase firebaseDatabase;
     private FirebaseAuth firebaseAuth;
     private FirebaseStorage firebaseStorage;
@@ -60,12 +65,25 @@ public class SettingUserActivity extends AppCompatActivity {
     private Uri imagePath;
     ImageView userPhotoProfile;
 
+
+    public SettingUser() {
+        // Required empty public constructor
+    }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivitySettingUserBinding.inflate(getLayoutInflater());
-        View view = binding.getRoot();
-        setContentView(view);
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        binding = FragmentSettingUserBinding.inflate(inflater, container, false);
+        View viewBinding = binding.getRoot();
+
+        dialog = new Dialog(getActivity());
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         firebaseAuth = firebaseAuth.getInstance();
@@ -74,22 +92,25 @@ public class SettingUserActivity extends AppCompatActivity {
         binding.changeProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                System.out.println("clickedd");
 //              declare variable for handle UI dialog
                 Button doneChange;
                 TextView usernameProfile;
                 EditText usernameInput;
 
 
-                AlertDialog.Builder alertadd = new AlertDialog.Builder(SettingUserActivity.this);
-                LayoutInflater factory = LayoutInflater.from(SettingUserActivity.this);
-                View viewDialog = factory.inflate(R.layout.change_profile_user, null);
-                alertadd.setView(viewDialog);
+//                AlertDialog.Builder alertadd = new AlertDialog.Builder(getActivity());
+//                LayoutInflater factory = LayoutInflater.from(getActivity());
+//                View viewDialog = factory.inflate(R.layout.change_profile_user, null);
+//                alertadd.setView(viewDialog);
 
+                dialog.setContentView(R.layout.change_profile_user);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable((Color.TRANSPARENT)));
 //              set value to variable
-                doneChange = viewDialog.findViewById(R.id.done_change);
-                usernameProfile = viewDialog.findViewById(R.id.username);
-                userPhotoProfile = viewDialog.findViewById(R.id.doctor_photo);
-                usernameInput = viewDialog.findViewById(R.id.username_input);
+                doneChange = dialog.findViewById(R.id.done_change);
+                usernameProfile = dialog.findViewById(R.id.username);
+                userPhotoProfile = dialog.findViewById(R.id.doctor_photo);
+                usernameInput = dialog.findViewById(R.id.username_input);
 
 //              get user info
                 DatabaseReference databaseReference = firebaseDatabase.getReference(firebaseAuth.getCurrentUser().getUid());
@@ -102,7 +123,7 @@ public class SettingUserActivity extends AppCompatActivity {
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-                        Toast.makeText(getApplicationContext(), "Failed To Fetch", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Failed To Fetch", Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -115,7 +136,7 @@ public class SettingUserActivity extends AppCompatActivity {
                             @Override
                             public void onSuccess(Uri uri) {
                                 imageURIacessToken = uri.toString();
-                                Glide.with(SettingUserActivity.this)
+                                Glide.with(getActivity())
                                         .load(uri)
                                         .into(userPhotoProfile);
                             }
@@ -156,11 +177,11 @@ public class SettingUserActivity extends AppCompatActivity {
                             userNewProfile.setUsername(newUsername);
                             databaseReference.setValue(userNewProfile);
                             updatenameoncloudfirestore();
-                            Toast.makeText(getApplicationContext(), "Updated", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Updated", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
-                alertadd.show();
+                dialog.show();
             }
         });
 
@@ -170,15 +191,18 @@ public class SettingUserActivity extends AppCompatActivity {
             public void onClick(View view) {
                 EditText oldPassword, newPassword;
                 Button doneChangePassword;
+//
+//                AlertDialog.Builder alertadd = new AlertDialog.Builder(getActivity());
+//                LayoutInflater factory = LayoutInflater.from(getActivity());
+//                View viewDialog = factory.inflate(R.layout.change_user_password, null);
+//                alertadd.setView(viewDialog);
 
-                AlertDialog.Builder alertadd = new AlertDialog.Builder(SettingUserActivity.this);
-                LayoutInflater factory = LayoutInflater.from(SettingUserActivity.this);
-                View viewDialog = factory.inflate(R.layout.change_user_password, null);
-                alertadd.setView(viewDialog);
+                dialog.setContentView(R.layout.change_user_password);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable((Color.TRANSPARENT)));
 
-                oldPassword = viewDialog.findViewById(R.id.old_password);
-                newPassword = viewDialog.findViewById(R.id.new_password);
-                doneChangePassword = viewDialog.findViewById(R.id.change_password_done);
+                oldPassword = dialog.findViewById(R.id.old_password);
+                newPassword = dialog.findViewById(R.id.new_password);
+                doneChangePassword = dialog.findViewById(R.id.change_password_done);
 
                 doneChangePassword.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -199,7 +223,7 @@ public class SettingUserActivity extends AppCompatActivity {
                                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                     @Override
                                                     public void onSuccess(Void unused) {
-                                                        Toast.makeText(getApplicationContext(), "Password telah di Update",
+                                                        Toast.makeText(getActivity(), "Password telah di Update",
                                                                 Toast.LENGTH_SHORT).show();
 
                                                     }
@@ -207,7 +231,7 @@ public class SettingUserActivity extends AppCompatActivity {
                                                 .addOnFailureListener(new OnFailureListener() {
                                                     @Override
                                                     public void onFailure(@NonNull Exception e) {
-                                                        Toast.makeText(getApplicationContext(), "Password Gagal di Update" + e.getMessage(),
+                                                        Toast.makeText(getActivity(), "Password Gagal di Update" + e.getMessage(),
                                                                 Toast.LENGTH_SHORT).show();
                                                         System.out.println(e.getMessage());
                                                     }
@@ -216,14 +240,14 @@ public class SettingUserActivity extends AppCompatActivity {
                                 }).addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(getApplicationContext(), "Password Gagal di Update" + e.getMessage(),
+                                Toast.makeText(getActivity(), "Password Gagal di Update" + e.getMessage(),
                                         Toast.LENGTH_SHORT).show();
                                 System.out.println(e.getMessage());
                             }
                         });
                     }
                 });
-                alertadd.show();
+                dialog.show();
             }
         });
 
@@ -231,7 +255,7 @@ public class SettingUserActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 firebaseAuth.signOut();
-                Intent loginActivity = new Intent(SettingUserActivity.this, LoginActivity.class);
+                Intent loginActivity = new Intent(getActivity(), LoginActivity.class);
                 startActivity(loginActivity);
             }
         });
@@ -239,25 +263,20 @@ public class SettingUserActivity extends AppCompatActivity {
         binding.changeLanguage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder alertadd = new AlertDialog.Builder(SettingUserActivity.this);
-                LayoutInflater factory = LayoutInflater.from(SettingUserActivity.this);
-                View viewDialog = factory.inflate(R.layout.change_language_user, null);
-                alertadd.setView(viewDialog);
-                alertadd.show();
+//                AlertDialog.Builder alertadd = new AlertDialog.Builder(getActivity());
+//                LayoutInflater factory = LayoutInflater.from(getActivity());
+//                View viewDialog = factory.inflate(R.layout.change_language_user, null);
+//                alertadd.setView(viewDialog);
+//                alertadd.show();
+                  dialog.setContentView(R.layout.change_language_user);
+                  dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                  dialog.show();
             }
         });
 
+        return viewBinding;
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == PICK_IMAGE && resultCode == RESULT_OK) {
-            imagePath = data.getData();
-            userPhotoProfile.setImageURI(imagePath);
-        }
-    }
 
     private void updatenameoncloudfirestore() {
 
@@ -272,10 +291,11 @@ public class SettingUserActivity extends AppCompatActivity {
         documentReference.set(userdata).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                Toast.makeText(getApplicationContext(), "Profile Update Succusfully", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Profile Update Succusfully", Toast.LENGTH_SHORT).show();
 
             }
         });
+
 
     }
 
@@ -288,7 +308,7 @@ public class SettingUserActivity extends AppCompatActivity {
 
         Bitmap bitmap = null;
         try {
-            bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imagePath);
+            bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imagePath);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -309,27 +329,26 @@ public class SettingUserActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(Uri uri) {
                         imageURIacessToken = uri.toString();
-                        Toast.makeText(getApplicationContext(), "URI get sucess", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "URI get sucess", Toast.LENGTH_SHORT).show();
                         updatenameoncloudfirestore();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getApplicationContext(), "URI get Failed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "URI get Failed", Toast.LENGTH_SHORT).show();
                     }
 
 
                 });
-                Toast.makeText(getApplicationContext(), "Image is Updated", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Image is Updated", Toast.LENGTH_SHORT).show();
 
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getApplicationContext(), "Image Not Updated", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Image Not Updated", Toast.LENGTH_SHORT).show();
             }
         });
     }
-
 
 }

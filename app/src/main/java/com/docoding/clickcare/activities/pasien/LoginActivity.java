@@ -1,4 +1,4 @@
-package com.docoding.clickcare;
+package com.docoding.clickcare.activities.pasien;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -10,7 +10,9 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
 
+import com.docoding.clickcare.R;
 import com.docoding.clickcare.databinding.ActivityLoginBinding;
+import com.docoding.clickcare.state.GlobalUserState;
 import com.google.android.gms.auth.api.identity.BeginSignInRequest;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -56,6 +58,15 @@ public class LoginActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
 
+        binding.skipToMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent homeActivity = new Intent(LoginActivity.this, HomeActivity.class);
+//              save state
+                GlobalUserState.userAuthStatus = "login_false";
+                startActivity(homeActivity);
+            }
+        });
         binding.loginUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,7 +91,8 @@ public class LoginActivity extends AppCompatActivity {
 
 //              validate user auth for email and password
                 if (!isEmptyField) {
-                    signInWithEmailAndPassword(emailLogin, passwordLogin);
+                    binding.loginProses.setVisibility(view.VISIBLE);
+                    signInWithEmailAndPassword(emailLogin, passwordLogin, view);
                 }
 
 
@@ -112,27 +124,32 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    private void signInWithEmailAndPassword(String email, String password) {
+    private void signInWithEmailAndPassword(String email, String password, View view) {
         firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            binding.loginProses.setVisibility(view.INVISIBLE);
+
                             // Sign in success, update UI with the signed-in user's information
                             System.out.println("signInWithEmail:success");
                             FirebaseUser user = firebaseAuth.getCurrentUser();
                             System.out.println("=====user=====" + user.getEmail());
 
+                            GlobalUserState.userAuthStatus = "login_true";
                             Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                             startActivity(intent);
                             finish();
                         } else {
+                            binding.loginProses.setVisibility(view.INVISIBLE);
                             // If sign in fails, display a message to the user.
-                            Toast.makeText(getApplicationContext(), "Password atau Email Salah",
+                            binding.passwordLogin.setError("Password atau Email salah");
+                            Toast.makeText(LoginActivity.this, "Password atau Email Salah",
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
-                });
+        });
 
     }
 

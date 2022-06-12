@@ -1,8 +1,10 @@
-package com.docoding.clickcare;
+package com.docoding.clickcare.activities.pasien;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.docoding.clickcare.R;
 
 public class AntrianPasienActivity extends AppCompatActivity {
 

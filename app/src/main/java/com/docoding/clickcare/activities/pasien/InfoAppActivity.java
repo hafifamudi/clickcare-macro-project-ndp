@@ -1,4 +1,4 @@
-package com.docoding.clickcare;
+package com.docoding.clickcare.activities.pasien;
 
 import androidx.appcompat.app.AppCompatActivity;
 

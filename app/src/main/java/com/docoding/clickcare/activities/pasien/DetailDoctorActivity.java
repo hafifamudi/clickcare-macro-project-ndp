@@ -1,4 +1,4 @@
-package com.docoding.clickcare;
+package com.docoding.clickcare.activities.pasien;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
@@ -6,12 +6,10 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.docoding.clickcare.R;
 import com.docoding.clickcare.databinding.ActivityDetailDoctorBinding;
-import com.docoding.clickcare.databinding.ActivityDoctorConsultantBinding;
-import com.docoding.clickcare.fragments.DetailDoctorFragment;
 import com.docoding.clickcare.fragments.FragmentDetailDoctorPagerAdapter;
 import com.docoding.clickcare.model.DoctorModel;
 import com.docoding.clickcare.state.GlobalUserState;

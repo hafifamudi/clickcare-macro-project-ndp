@@ -1,4 +1,4 @@
-package com.docoding.clickcare;
+package com.docoding.clickcare.activities.pasien;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.docoding.clickcare.databinding.ActivityHomeBinding;
+import com.docoding.clickcare.R;
 import com.docoding.clickcare.databinding.ActivityRegisterPasienBinding;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.datepicker.MaterialDatePicker;
@@ -24,18 +24,6 @@ public class RegisterPasienActivity extends AppCompatActivity {
         binding = ActivityRegisterPasienBinding.inflate(getLayoutInflater());
         View viewBinding = binding.getRoot();
         setContentView(viewBinding);
-
-        MaterialDatePicker.Builder builder = MaterialDatePicker.Builder.datePicker();
-        builder.setTitleText("Select a Date");
-        builder.setTheme(R.style.MaterialCalendarTheme);
-
-        final MaterialDatePicker materialDatePicker = builder.build();
-        binding.datePicker.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                materialDatePicker.show(getSupportFragmentManager(), "MATERIAL_DATE_PICKER");
-            }
-        });
 
         binding.backToHome.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -6,4 +6,5 @@ public class GlobalUserState {
     public static String doctorPrice;
     public static String doctorPasien;
     public static String doctorExperience;
+    public static String userAuthStatus;
 }

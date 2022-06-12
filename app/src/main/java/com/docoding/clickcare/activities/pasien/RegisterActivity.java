@@ -1,4 +1,4 @@
-package com.docoding.clickcare;
+package com.docoding.clickcare.activities.pasien;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,10 +9,10 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.docoding.clickcare.R;
 import com.docoding.clickcare.databinding.RegisterActivityBinding;
 import com.docoding.clickcare.model.UserModel;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -26,7 +26,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
@@ -113,10 +112,8 @@ public class RegisterActivity extends AppCompatActivity {
 
                 isEmailExistOrNot();
                 if (!isEmptyField) {
-                    binding.progressRegisterUser.setVisibility(View.VISIBLE);
-
-                    sendNewUserData();
-                    binding.progressRegisterUser.setVisibility(View.GONE);
+                    binding.registerProses.setVisibility(View.VISIBLE);
+                    sendNewUserData(view);
                 }
             }
         });
@@ -154,8 +151,9 @@ public class RegisterActivity extends AppCompatActivity {
 
         return isEmailExist;
     }
-//
-    private void sendNewUserData() {
+
+    //
+    private void sendNewUserData(View view) {
         // First register the user for get the FirebaseAuth UID
         firebaseAuth.createUserWithEmailAndPassword(
                 binding.emailRegister.getText().toString().trim()
@@ -164,6 +162,8 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            binding.registerProses.setVisibility(view.INVISIBLE);
+
                             Toast.makeText(getApplicationContext(), "Berhasil melakukan registrasi",
                                     Toast.LENGTH_SHORT).show();
                             // get the user UID
@@ -174,18 +174,20 @@ public class RegisterActivity extends AppCompatActivity {
                             Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                             startActivity(intent);
                         } else {
+                            binding.registerProses.setVisibility(view.INVISIBLE);
                             Toast.makeText(getApplicationContext(), "Gagal melakukan registrasi",
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
                 })
-            .addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                System.out.println(e.getMessage());
-            }
-        });
-}
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getApplicationContext(), "Gagal melakukan registrasi",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
 
     private void sendDataToRealTimeDatabase(String userUID) {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
@@ -210,7 +212,7 @@ public class RegisterActivity extends AppCompatActivity {
         //Image compresesion
 
         Bitmap bitmap = BitmapFactory.decodeResource(this.getResources(),
-                R.drawable.user_profile_default_picture);
+                R.drawable.user_no_login_profile);
 
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 25, byteArrayOutputStream);
