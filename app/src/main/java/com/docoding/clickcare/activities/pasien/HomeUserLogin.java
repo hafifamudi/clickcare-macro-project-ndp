@@ -1,6 +1,9 @@
 package com.docoding.clickcare.activities.pasien;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -80,7 +83,6 @@ public class HomeUserLogin extends Fragment {
         listNews.addAll(NewsDummy.ListData());
         showRecycleListNews();
 
-
         binding.konsultasiActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -121,8 +123,7 @@ public class HomeUserLogin extends Fragment {
                         if (!isEmptyField) {
                             loginProses.setVisibility(view.VISIBLE);
                             signInWithEmailAndPassword(emailLogin.getText().toString().trim(),
-                                    passwordLogin.getText().toString().trim(), bottomSheetView);
-                            bottomSheetDialog.dismiss();
+                                    passwordLogin.getText().toString().trim(), bottomSheetDialog, bottomSheetView);
                         }
 
 
@@ -151,9 +152,10 @@ public class HomeUserLogin extends Fragment {
         System.out.println("execute recycle....");
     }
 
-    private void signInWithEmailAndPassword(String email, String password, View view) {
+    private void signInWithEmailAndPassword(String email, String password, BottomSheetDialog bottomSheet, View view) {
+        ProgressBar loginProses = view.findViewById(R.id.login_proses);
 
-        firebaseAuth.signInWithEmailAndPassword("anton@gmail.com", "rootuser")
+        firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -165,7 +167,10 @@ public class HomeUserLogin extends Fragment {
                             FirebaseUser user = firebaseAuth.getCurrentUser();
                             System.out.println("=====user=====" + user.getEmail());
 
+                            loginProses.setVisibility(view.VISIBLE);
+                            bottomSheet.dismiss();
                             GlobalUserState.userAuthStatus = "login_true";
+                            replaceFragment(new HomeNoLoginUser());
                         } else {
 //                            loginProses.setVisibility(view.INVISIBLE);
                             // If sign in fails, display a message to the user.
@@ -175,6 +180,13 @@ public class HomeUserLogin extends Fragment {
                     }
                 });
 
+    }
+
+    private void replaceFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_layout, fragment);
+        fragmentTransaction.commit();
     }
 
 }

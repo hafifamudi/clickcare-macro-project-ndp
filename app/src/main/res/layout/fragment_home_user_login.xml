@@ -1,14 +1,245 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.pasien.home_user_login">
+    tools:context=".activities.pasien.HomeUserLogin">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        >
 
-</FrameLayout>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/thumbnail_card_user_no_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:cardCornerRadius="48dp"
+            app:cardElevation="0dp">
+
+            <ImageView
+                android:id="@+id/img_item_photo_user_no_login"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/user_no_login_profile" />
+
+        </androidx.cardview.widget.CardView>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_gravity="center">
+
+
+            <Button
+                android:layout_width="100.62dp"
+                android:layout_height="wrap_content"
+                android:text="Masuk"
+                android:layout_gravity="start"
+                android:inputType="textCapCharacters"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_medium"
+                android:background="@drawable/button_secondary"
+                />
+
+            <Button
+                android:layout_width="100.62dp"
+                android:layout_height="wrap_content"
+                android:text="Daftar"
+                android:layout_gravity="center"
+                android:inputType="textCapCharacters"
+                android:textSize="12sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/poppins_medium"
+                android:background="@drawable/button_primary"
+                android:layout_marginLeft="15dp"
+                />
+
+            <ImageView
+                android:id="@+id/notif_bg_no_login"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="end"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/notification" />
+        </FrameLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="370dp"
+        android:layout_height="105dp"
+        android:layout_marginTop="33dp"
+        android:background="@drawable/container_home_section"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="42dp"
+            android:paddingRight="42dp">
+
+
+            <Button
+                android:id="@+id/registrasi_activity"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="start"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/button_home_section"
+                android:drawableLeft="@drawable/document_icon"
+                android:padding="8dp" />
+
+
+            <Button
+                android:id="@+id/konsultasi_activity"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="-15dp"
+                android:background="@drawable/button_home_section"
+                android:drawableLeft="@drawable/call_icon"
+                android:padding="8dp" />
+
+            <Button
+                android:id="@+id/info_app_activity"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="end"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/button_home_section"
+                android:drawableLeft="@drawable/info_square"
+                android:padding="8dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:fontFamily="@font/inter_semibold"
+                android:text="Registrasi"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:fontFamily="@font/inter_semibold"
+                android:text="Konsultasi"
+                android:textAlignment="center"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="4dp"
+                android:fontFamily="@font/inter_semibold"
+                android:text="Info App"
+                android:textAlignment="textEnd"
+                android:textColor="@color/white" />
+        </FrameLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="31dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_semibold"
+                android:paddingLeft="20dp"
+                android:text="Berita"
+                android:textColor="#4F576D"
+                android:textSize="18sp" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-10dp"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/inter_medium"
+                android:inputType="textCapSentences"
+                android:paddingRight="20dp"
+                android:text="Lihat Semua"
+                android:textAlignment="textEnd"
+                android:textColor="#ED8323" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/news_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"
+            tools:listitem="@layout/item_news" />
+    </LinearLayout>
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/inter_semibold"
+                android:paddingLeft="20dp"
+                android:text="Lokasi"
+                android:textColor="#4F576D"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:layout_width="328dp"
+                android:layout_height="228dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="100dp"
+                android:src="@drawable/map_dummy" />
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

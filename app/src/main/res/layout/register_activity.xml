@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".activities.pasien.LoginActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -142,12 +142,20 @@
             android:inputType="textPassword"
             />
 
+        <ProgressBar
+            android:id="@+id/register_proses"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:indeterminateTint="@color/primaryColor"
+            android:layout_marginTop="10dp"/>
+
         <Button
             android:id="@+id/registrasi"
             android:layout_width="340dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="30dp"
             android:background="@drawable/button_primary"
             android:fontFamily="@font/poppins_medium"
             android:inputType="textCapSentences"
@@ -211,15 +219,6 @@
                 />
         </FrameLayout>
 
-        <ProgressBar
-            android:id="@+id/progress_register_user"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="30dp"
-            android:indeterminateTint="@color/primaryColor"
-            android:layout_marginTop="10dp"
-            android:visibility="invisible"
-            />
     </LinearLayout>
 
 </ScrollView>

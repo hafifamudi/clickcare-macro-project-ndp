@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F0F0F0"
-    tools:context=".PaymentGatewayActivity">
+    tools:context=".activities.pasien.PaymentGatewayActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="111dp"
             android:layout_marginBottom="18dp"
-            android:background="@color/primaryColor"
+            android:background="@color/white"
             android:orientation="vertical">
 
             <FrameLayout
@@ -30,7 +30,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="-10dp"
                     android:background="@android:color/transparent"
-                    android:drawableLeft="@drawable/ic_baseline_arrow_back_24" />
+                    android:drawableLeft="@drawable/ic_baseline_arrow_back_ios_24" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -38,7 +38,7 @@
                     android:fontFamily="@font/inter_semibold"
                     android:text="Pembayaran"
                     android:textAlignment="center"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="18sp" />
             </FrameLayout>
         </LinearLayout>
@@ -237,7 +237,7 @@
                     android:layout_height="68dp"
                     android:padding="20dp"
                     android:drawableRight="@drawable/gopay"
-                    android:background="@drawable/button_secondary" />
+                    android:background="@drawable/form_user_input" />
 
                 <RadioButton android:id="@+id/dana"
                     android:layout_width="match_parent"
@@ -245,7 +245,7 @@
                     android:layout_marginTop="2dp"
                     android:padding="20dp"
                     android:drawableRight="@drawable/dana"
-                    android:background="@drawable/button_secondary"/>
+                    android:background="@drawable/form_user_input"/>
 
                 <RadioButton android:id="@+id/bri"
                     android:layout_width="match_parent"
@@ -253,7 +253,7 @@
                     android:layout_marginTop="2dp"
                     android:padding="20dp"
                     android:drawableRight="@drawable/bri"
-                    android:background="@drawable/button_secondary"/>
+                    android:background="@drawable/form_user_input"/>
             </RadioGroup>
 
         </LinearLayout>

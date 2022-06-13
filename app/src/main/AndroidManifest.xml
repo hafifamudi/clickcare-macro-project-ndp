@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.docoding.clickcare" >
+    package="com.docoding.clickcare">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -10,62 +10,64 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" >
+        android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
         <activity
-            android:name=".ForgotPasswordActivity"
+            android:name=".activities.pasien.Loading"
             android:exported="false" />
         <activity
-            android:name=".BookAntrianPasienActivity"
+            android:name=".activities.pasien.ForgotPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".AntrianPasienActivity"
+            android:name=".activities.pasien.BookAntrianPasienActivity"
             android:exported="false" />
         <activity
-            android:name=".ChatDoctorActivity"
+            android:name=".activities.pasien.AntrianPasienActivity"
             android:exported="false" />
         <activity
-            android:name=".PaymentGatewayActivity"
+            android:name=".activities.pasien.ChatDoctorActivity"
             android:exported="false" />
         <activity
-            android:name=".SettingUserActivity"
-            android:exported="true" />
-        <activity
-            android:name=".InfoAppActivity"
-            android:exported="true" />
-        <activity
-            android:name=".DetailDoctorActivity"
-            android:exported="true" />
-        <activity
-            android:name=".DetailRegistrasi"
+            android:name=".activities.pasien.PaymentGatewayActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterPasienActivity"
-            android:exported="true"
-            android:theme="@style/Theme.ClickCare" />
-        <activity
-            android:name=".DoctorConsultantActivity"
+            android:name=".activities.pasien.SettingUserActivity"
             android:exported="true" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".activities.pasien.InfoAppActivity"
             android:exported="true" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".activities.pasien.DetailDoctorActivity"
             android:exported="true" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".activities.pasien.DetailRegistrasi"
+            android:exported="false" />
+        <activity
+            android:name=".activities.pasien.RegisterPasienActivity"
             android:exported="true" />
         <activity
-            android:name=".OnboardingActivity"
+            android:name=".activities.pasien.DoctorConsultantActivity"
             android:exported="true" />
         <activity
-            android:name=".SplashScreen"
-            android:exported="true" >
+            android:name=".activities.pasien.HomeActivity"
+            android:exported="true"></activity>
+        <activity
+            android:name=".activities.pasien.RegisterActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activities.pasien.LoginActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activities.pasien.OnboardingActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activities.pasien.SplashScreen"
+            android:exported="true"></activity>
     </application>
 
 </manifest>

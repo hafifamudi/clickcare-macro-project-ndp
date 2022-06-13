@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="350dp"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingLeft="40dp"
-    android:paddingRight="40dp"
-    android:paddingTop="35dp"
-    android:paddingBottom="27dp"
     >
 
     <LinearLayout
+        android:background="@drawable/chat_form_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:paddingBottom="20dp"
+        android:paddingTop="20dp"
         >
 
         <TextView

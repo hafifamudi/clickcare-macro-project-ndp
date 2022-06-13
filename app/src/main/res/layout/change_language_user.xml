@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="350dp"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:paddingLeft="40dp"
-    android:paddingRight="40dp"
-    android:paddingTop="35dp"
-    android:paddingBottom="27dp">
+    android:background="@drawable/chat_form_input"
+    >
 
     <LinearLayout
+        android:background="@drawable/chat_form_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -21,6 +20,7 @@
             android:fontFamily="@font/inter_medium"
             android:layout_gravity="center"
             android:textSize="16sp"
+            android:textColor="@color/black"
             android:layout_marginTop="13dp"
             android:layout_marginBottom="20dp"
 
@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:text="Bahasa Indonesia"
                 android:padding="20dp"
-                android:background="@drawable/button_secondary" />
+                android:background="@drawable/form_user_input" />
 
             <RadioButton android:id="@+id/radio_ninjas"
                 android:layout_width="250dp"
@@ -45,13 +45,14 @@
                 android:layout_height="wrap_content"
                 android:text="English"
                 android:padding="20dp"
-                android:background="@drawable/button_secondary"/>
+                android:background="@drawable/form_user_input"/>
         </RadioGroup>
 
         <Button
             android:layout_width="122dp"
             android:layout_height="wrap_content"
             android:text="Selesai"
+            android:layout_marginBottom="20dp"
             android:layout_marginTop="31dp"
             android:layout_gravity="center"
             android:inputType="textCapCharacters"
