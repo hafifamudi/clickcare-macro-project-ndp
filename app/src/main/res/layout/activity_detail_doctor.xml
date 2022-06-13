@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetailDoctorActivity">
+    tools:context=".activities.pasien.DetailDoctorActivity">
 
 
     <LinearLayout
@@ -29,16 +29,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="-10dp"
                 android:background="@android:color/transparent"
-                android:drawableLeft="@drawable/ic_baseline_arrow_back_24" />
+                android:drawableLeft="@drawable/ic_baseline_arrow_back_ios_24_2" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_semibold"
-                android:text="Konsulatasi"
+                android:text="Detail"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textSize="22sp" />
         </FrameLayout>
 
         <androidx.cardview.widget.CardView
@@ -129,7 +129,7 @@
             android:paddingTop="12dp"
             android:paddingRight="120dp"
             android:paddingBottom="12dp"
-            android:text="Pesan Antrian"
+            android:text="Chat Sekarang"
             android:textColor="@color/white"
             android:textSize="14dp"
             android:theme="@style/Theme.ClickCare" />

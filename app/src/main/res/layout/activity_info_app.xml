@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".InfoAppActivity">
+    tools:context=".activities.pasien.InfoAppActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="111dp"
         android:layout_marginBottom="18dp"
-        android:background="@color/primaryColor"
+        android:background="@color/white"
         android:orientation="vertical">
 
         <FrameLayout
@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="-10dp"
                 android:background="@android:color/transparent"
-                android:drawableLeft="@drawable/ic_baseline_arrow_back_24" />
+                android:drawableLeft="@drawable/ic_baseline_arrow_back_ios_24" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -33,9 +33,16 @@
                 android:fontFamily="@font/inter_semibold"
                 android:text="Informasi Aplikasi"
                 android:textAlignment="center"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="18sp" />
         </FrameLayout>
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayout7" />
     </LinearLayout>
 
     <com.skydoves.expandablelayout.ExpandableLayout

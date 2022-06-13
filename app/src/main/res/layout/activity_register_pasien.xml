@@ -4,25 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterPasienActivity">
+    tools:context=".activities.pasien.RegisterPasienActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- res/layout/example_activity.xml -->
-        <androidx.fragment.app.FragmentContainerView
-            xmlns:android="http://schemas.android.com/apk/res/android"
+        <LinearLayout
             android:id="@+id/fragment_container_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:orientation="horizontal"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="18dp"
-            android:background="@color/primaryColor"
+            android:background="@color/white"
             android:orientation="vertical">
 
             <FrameLayout
@@ -37,7 +36,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="-10dp"
                     android:background="@android:color/transparent"
-                    android:drawableLeft="@drawable/ic_baseline_arrow_back_24" />
+                    android:drawableLeft="@drawable/ic_baseline_arrow_back_ios_24" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -45,16 +44,22 @@
                     android:fontFamily="@font/inter_semibold"
                     android:text="Registrasi"
                     android:textAlignment="center"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="18sp" />
             </FrameLayout>
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintBottom_toBottomOf="@+id/linearLayout7" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="370dp"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="17dp"
-            android:layout_marginRight="17dp"
+            android:layout_marginLeft="20dp"
             android:background="@drawable/card_alert"
             android:orientation="vertical"
             android:paddingLeft="17dp"
@@ -95,10 +100,10 @@
 
         <!--        Name Form-->
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginLeft="17dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="12dp"
             >
 
@@ -118,10 +123,10 @@
 
         <!--        NIK Form-->
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginLeft="17dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             >
 
@@ -141,10 +146,10 @@
 
         <!--        Alamat Form-->
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginLeft="17dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             >
 
@@ -164,10 +169,10 @@
 
         <!--        No HP Form-->
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginLeft="17dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             >
 
@@ -187,10 +192,10 @@
 
         <!--        No BPJS Form-->
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginLeft="17dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             >
 
@@ -210,10 +215,10 @@
 
         <!--        Keluhan Form-->
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginLeft="17dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             >
 
@@ -232,57 +237,7 @@
                 />
         </LinearLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="17dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/inter_semibold"
-            android:text="Detail Pasien"
-            android:textSize="16sp" />
 
-        <!--        Month Form-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginLeft="17dp"
-            android:layout_marginTop="20dp"
-            >
-
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Sama dengan pemesanan" />
-
-                <com.google.android.material.switchmaterial.SwitchMaterial
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:checked="true"
-                    app:useMaterialThemeColors="false"
-                    android:layout_gravity="end"
-                    android:layout_marginRight="17dp"
-                    android:theme="@style/SCBSwitch"
-                    />
-            </FrameLayout>
-
-            <EditText
-                android:layout_width="370dp"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:background="@drawable/form_user_input"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/poppins_medium"
-                android:hint="April Mei"
-                android:textSize="14sp"
-                android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
-                />
-        </LinearLayout>
 
         <!--        Poli yang di tuju Form-->
         <LinearLayout
@@ -344,111 +299,10 @@
                 />
         </LinearLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="17dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/inter_semibold"
-            android:text="Detail Waktu"
-            android:textSize="16sp" />
-
-        <!--        Dokter Form-->
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginLeft="17dp"
-            android:layout_marginTop="20dp"
-            >
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Pilih tanggal daftar" />
-
-            <Button
-                android:id="@+id/date_picker"
-                android:layout_width="370dp"
-                android:layout_height="60dp"
-                android:paddingLeft="16dp"
-                android:paddingTop="16dp"
-                android:background="@drawable/form_user_input"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/poppins_medium"
-                android:hint="Pilih tanggal"
-                android:gravity="start"
-                android:drawableRight="@drawable/calendar"
-                android:textSize="14sp"
-                android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
-                />
-        </LinearLayout>
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Pilih Waktu"
-            android:layout_marginLeft="17dp"
-            android:layout_marginTop="20dp"
-            />
-
-<!--        Waktu Form-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
-            android:layout_marginTop="20dp"
-            >
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="09:00"
-                android:textColor="#717171"
-                android:padding="15dp"
-                android:backgroundTint="#D8D8D8"
-                android:layout_marginRight="8dp"
-                />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="09:30"
-                android:textColor="#717171"
-                android:padding="15dp"
-                android:backgroundTint="#D8D8D8"
-                android:layout_marginRight="8dp"
-                />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="10:00"
-                android:textColor="#717171"
-                android:padding="15dp"
-                android:backgroundTint="#D8D8D8"
-                android:layout_marginRight="8dp"
-                />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="10:30"
-                android:textColor="#717171"
-                android:backgroundTint="#D8D8D8"
-                android:padding="15dp"
-                android:layout_marginRight="8dp"
-                />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="370dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="17dp"
-            android:layout_marginRight="17dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/card_alert_danger"
             android:orientation="vertical"
@@ -493,7 +347,6 @@
             android:paddingLeft="120dp"
             android:paddingRight="120dp"
             android:background="@drawable/button_primary"
-            android:theme="@style/Theme.ClickCare"
              />
     </LinearLayout>
 </ScrollView>

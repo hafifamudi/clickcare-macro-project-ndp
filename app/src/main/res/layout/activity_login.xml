@@ -2,9 +2,11 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/login_bottom_sheet"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    android:background="@drawable/bottom_sheet_bacground"
+    tools:context=".activities.pasien.LoginActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,13 +14,27 @@
         android:orientation="vertical"
         >
 
+        <Button
+            android:id="@+id/skip_to_menu"
+            android:layout_width="92dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:inputType="textCapSentences"
+            android:textSize="14dp"
+            android:textColor="@color/textColorPrimary"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Lewati"
+            android:layout_marginTop="34dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/button_secondary"
+            />
 <!--        Hero image -->
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="44dp"
             android:src="@drawable/app_icon_complete"
-            android:layout_marginTop="107dp"
+            android:layout_marginTop="24dp"
             />
 
         <TextView
@@ -123,6 +139,13 @@
                 />
         </FrameLayout>
 
+        <ProgressBar
+            android:id="@+id/login_proses"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:indeterminateTint="@color/primaryColor"
+            android:layout_marginTop="10dp"/>
 
         <Button
             android:id="@+id/login_user"
@@ -134,7 +157,7 @@
             android:textColor="@color/white"
             android:fontFamily="@font/poppins_medium"
             android:text="Masuk"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="20dp"
             android:paddingTop="12dp"
             android:paddingBottom="12dp"
             android:paddingLeft="120dp"
@@ -187,7 +210,7 @@
                     android:inputType="textCapSentences"
                     android:textAlignment="textEnd"
                     android:textColor="@color/primaryColor"
-                    android:layout_marginRight="65dp"
+                    android:layout_marginRight="75dp"
                     android:layout_marginTop="-12dp"
                     android:layout_gravity="end"
                     android:fontFamily="@font/poppins_medium"
