@@ -72,7 +72,7 @@ public class HomeActivity extends AppCompatActivity {
                     }
                     break;
                 case R.id.calender_page:
-                    replaceFragment(new HomeNoLoginUser());
+                    replaceFragment(new BookAntrianPasien());
                     break;
                 case R.id.settings_page:
                     replaceFragment(new SettingUser());

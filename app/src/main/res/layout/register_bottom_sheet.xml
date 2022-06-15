@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/register_bottom_sheet_two"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/login_bottom_sheet_two"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bottom_sheet_bacground"
@@ -13,7 +13,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         >
-
         <View
             android:id="@+id/view"
             android:layout_width="50dp"
@@ -21,12 +20,11 @@
             android:layout_marginTop="10dp"
             android:layout_gravity="center"
             android:background="@android:color/darker_gray" />
-
         <TextView
-            android:id="@+id/login_bottom_title"
+            android:id="@+id/register_bottom_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Masuk Terlebih Dahulu"
+            android:text="Silahkan melakukan Pendaftaran"
             android:textAlignment="center"
             android:layout_marginTop="16dp"
             android:textSize="18sp"
@@ -35,6 +33,33 @@
             />
 
         <!--        Form for User Input-->
+        <!--        Name-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:fontFamily="@font/poppins_medium"
+            android:layout_marginLeft="31dp"
+            android:layout_marginTop="39dp"
+            />
+
+        <EditText
+            android:id="@+id/username_register"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:hint="Masukan Nama"
+            android:textSize="14sp"
+            android:textColorHint="@color/textColorSecondary"
+            android:fontFamily="@font/poppins_medium"
+            android:drawablePadding="16dp"
+            android:drawableLeft="@drawable/user"
+            android:padding="16dp"
+            android:layout_gravity="center"
+            android:background="@drawable/form_user_input"
+            android:layout_marginTop="10dp"
+            />
+
+
         <!--        Email-->
         <TextView
             android:layout_width="match_parent"
@@ -42,11 +67,11 @@
             android:text="Email"
             android:fontFamily="@font/poppins_medium"
             android:layout_marginLeft="31dp"
-            android:layout_marginTop="39dp"
+            android:layout_marginTop="22dp"
             />
 
         <EditText
-            android:id="@+id/email_login"
+            android:id="@+id/email_register"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:hint="Alamat Email"
@@ -74,11 +99,10 @@
             />
 
         <EditText
-            android:id="@+id/password_login"
+            android:id="@+id/password_register"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:hint="Password"
-            android:inputType="textPassword"
             android:textSize="14sp"
             android:textColorHint="@color/textColorSecondary"
             android:fontFamily="@font/poppins_medium"
@@ -88,46 +112,39 @@
             android:layout_gravity="center"
             android:background="@drawable/form_user_input"
             android:layout_marginTop="10dp"
+            android:inputType="textPassword"
             />
 
-        <!--        Checkbox-->
+        <!--        Confirm Password-->
 
-        <FrameLayout
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:text="Confirm Password"
+            android:fontFamily="@font/poppins_medium"
+            android:layout_marginLeft="31dp"
+            android:layout_marginTop="22dp"
+            />
 
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/checkbox"
-                android:text="Ingat Saya"
-                android:textSize="14sp"
-                android:padding="13sp"
-                android:textColor="@color/textColorSecondary"
-                android:fontFamily="@font/poppins_medium"
-                android:layout_marginLeft="28dp"
-                android:layout_marginTop="23dp"
-                />
-
-            <Button
-                android:id="@+id/forgot_password_user"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/lupa_password"
-                android:textSize="14sp"
-                android:inputType="textCapSentences"
-                android:textAlignment="textEnd"
-                android:textColor="@color/primaryColor"
-                android:layout_marginRight="35dp"
-                android:layout_marginTop="25dp"
-                android:layout_gravity="end"
-                android:fontFamily="@font/poppins_medium"
-                android:background="@android:color/transparent"
-                />
-        </FrameLayout>
+        <EditText
+            android:id="@+id/confirm_password_register"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:textSize="14sp"
+            android:textColorHint="@color/textColorSecondary"
+            android:fontFamily="@font/poppins_medium"
+            android:drawablePadding="16dp"
+            android:drawableLeft="@drawable/lock_icon"
+            android:padding="16dp"
+            android:layout_gravity="center"
+            android:background="@drawable/form_user_input"
+            android:layout_marginTop="10dp"
+            android:inputType="textPassword"
+            />
 
         <ProgressBar
-            android:id="@+id/login_proses"
+            android:id="@+id/register_proses"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="invisible"
@@ -135,31 +152,29 @@
             android:layout_marginTop="10dp"/>
 
         <Button
-            android:id="@+id/login_user"
+            android:id="@+id/registrasi"
             android:layout_width="340dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:inputType="textCapSentences"
-            android:textSize="14dp"
-            android:textColor="@color/white"
-            android:fontFamily="@font/poppins_medium"
-            android:text="Masuk"
-            android:layout_marginTop="20dp"
-            android:paddingTop="12dp"
-            android:paddingBottom="12dp"
-            android:paddingLeft="120dp"
-            android:paddingRight="120dp"
+            android:layout_marginTop="30dp"
             android:background="@drawable/button_primary"
-            />
+            android:fontFamily="@font/poppins_medium"
+            android:inputType="textCapSentences"
+            android:paddingLeft="120dp"
+            android:paddingTop="12dp"
+            android:paddingRight="120dp"
+            android:paddingBottom="12dp"
+            android:text="Daftar"
+            android:textColor="@color/white"
+            android:textSize="14dp" />
 
         <Button
-            android:id="@+id/login_with_google"
             android:layout_width="340dp"
             android:layout_height="wrap_content"
             android:inputType="textCapSentences"
             android:textSize="14dp"
             android:fontFamily="@font/poppins_medium"
-            android:text="Masuk dengan Google"
+            android:text="Daftar dengan Google"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="40dp"
             android:paddingTop="12dp"
@@ -183,21 +198,21 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Belum punya akun ?"
-                android:layout_marginLeft="60dp"
+                android:text="Sudah punya akun ?"
+                android:layout_marginLeft="110dp"
                 android:fontFamily="@font/poppins_medium"
                 />
 
             <Button
-                android:id="@+id/registrasi_user"
-                android:layout_width="match_parent"
+                android:id="@+id/login"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
-                android:text="@string/daftar_sekarang"
+                android:text="@string/masuk"
                 android:textSize="14sp"
                 android:inputType="textCapSentences"
                 android:textAlignment="textEnd"
                 android:textColor="@color/primaryColor"
-                android:layout_marginRight="55dp"
+                android:layout_marginRight="80dp"
                 android:layout_marginTop="-12dp"
                 android:layout_gravity="end"
                 android:fontFamily="@font/poppins_medium"
@@ -207,4 +222,4 @@
 
     </LinearLayout>
 
-</LinearLayout>
+</ScrollView>

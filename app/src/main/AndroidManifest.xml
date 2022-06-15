@@ -3,6 +3,8 @@
     package="com.docoding.clickcare">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -10,15 +12,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
         <activity
-            android:name=".activities.pasien.Loading"
-            android:exported="false" />
-        <activity
             android:name=".activities.pasien.ForgotPasswordActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.pasien.BookAntrianPasienActivity"
             android:exported="false" />
         <activity
             android:name=".activities.pasien.AntrianPasienActivity"
@@ -29,9 +26,6 @@
         <activity
             android:name=".activities.pasien.PaymentGatewayActivity"
             android:exported="false" />
-        <activity
-            android:name=".activities.pasien.SettingUserActivity"
-            android:exported="true" />
         <activity
             android:name=".activities.pasien.InfoAppActivity"
             android:exported="true" />
@@ -68,6 +62,8 @@
         <activity
             android:name=".activities.pasien.SplashScreen"
             android:exported="true"></activity>
+
+        <service android:name=".services.FetchAddressIntentService" />
     </application>
 
 </manifest>

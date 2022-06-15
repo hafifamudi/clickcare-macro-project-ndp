@@ -41,6 +41,7 @@
             >
 
             <Button
+                android:id="@+id/no_permission"
                 android:layout_width="122dp"
                 android:layout_height="wrap_content"
                 android:text="Tolak"
@@ -53,6 +54,7 @@
                 />
 
             <Button
+                android:id="@+id/yes_permission"
                 android:layout_marginLeft="16dp"
                 android:layout_width="122dp"
                 android:layout_height="wrap_content"

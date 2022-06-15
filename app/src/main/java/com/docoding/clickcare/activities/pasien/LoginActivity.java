@@ -57,6 +57,9 @@ public class LoginActivity extends AppCompatActivity {
 
 
         firebaseAuth = FirebaseAuth.getInstance();
+//        set default state
+        GlobalUserState.userSuccessOrder = "ACCEPT";
+        GlobalUserState.userSuccessOrder = "START";
 
         binding.skipToMenu.setOnClickListener(new View.OnClickListener() {
             @Override

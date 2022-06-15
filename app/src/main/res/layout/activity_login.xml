@@ -210,7 +210,7 @@
                     android:inputType="textCapSentences"
                     android:textAlignment="textEnd"
                     android:textColor="@color/primaryColor"
-                    android:layout_marginRight="75dp"
+                    android:layout_marginRight="55dp"
                     android:layout_marginTop="-12dp"
                     android:layout_gravity="end"
                     android:fontFamily="@font/poppins_medium"
