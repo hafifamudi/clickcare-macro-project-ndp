@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+tools:context=".activities.pasien.BookAntrianPasien">
+
+<LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".activities.pasien.BookAntrianPasienActivity">
-
-
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="111dp"
         android:layout_marginBottom="18dp"
-        android:background="@color/primaryColor"
+        android:background="@color/white"
         android:orientation="vertical">
 
         <FrameLayout
@@ -26,15 +29,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="-10dp"
                 android:background="@android:color/transparent"
-                android:drawableLeft="@drawable/ic_baseline_arrow_back_24" />
+                android:drawableLeft="@drawable/ic_baseline_arrow_back_ios_24" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_semibold"
-                android:text="Data Pesan Antrian"
+                android:text="Antrian Kamu"
                 android:textAlignment="center"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="18sp" />
         </FrameLayout>
     </LinearLayout>
@@ -69,7 +72,7 @@
 
     <Button
         android:id="@+id/booking_antrian"
-        android:layout_width="360dp"
+        android:layout_width="206dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:inputType="textCapSentences"
@@ -79,11 +82,8 @@
         android:text="Pesan Antrian"
         android:layout_marginTop="60dp"
         android:layout_marginBottom="37dp"
-        android:paddingTop="12dp"
-        android:paddingBottom="12dp"
-        android:paddingLeft="120dp"
-        android:paddingRight="120dp"
         android:background="@drawable/button_primary"
         android:theme="@style/Theme.ClickCare"
         />
 </LinearLayout>
+</ScrollView>

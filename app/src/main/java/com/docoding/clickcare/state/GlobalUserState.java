@@ -7,4 +7,6 @@ public class GlobalUserState {
     public static String doctorPasien;
     public static String doctorExperience;
     public static String userAuthStatus;
+    public static String userSuccessOrder;
+    public static String userEndChat;
 }

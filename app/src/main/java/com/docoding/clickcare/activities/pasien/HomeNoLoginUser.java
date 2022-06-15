@@ -2,6 +2,7 @@ package com.docoding.clickcare.activities.pasien;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -12,9 +13,11 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -25,6 +28,7 @@ import com.docoding.clickcare.databinding.FragmentHomeUserLoginBinding;
 import com.docoding.clickcare.dummydata.NewsDummy;
 import com.docoding.clickcare.model.NewsModel;
 import com.docoding.clickcare.model.UserModel;
+import com.docoding.clickcare.state.GlobalUserState;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -49,9 +53,6 @@ public class HomeNoLoginUser extends Fragment {
     private FirebaseDatabase firebaseDatabase;
 
     private String imageURIacessToken;
-
-    public static final String SUCCESS_ORDER = "accepted";
-    public static final String END_CHAT = "endchat";
     static int gpsDialog = 0;
 
     public HomeNoLoginUser() {
@@ -92,26 +93,30 @@ public class HomeNoLoginUser extends Fragment {
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable((Color.TRANSPARENT)));
             dialog.show();
 
+            Button yesOption = dialog.getWindow().findViewById(R.id.yes_permission);
+            yesOption.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    System.out.println("success clicked");
+                }
+            });
+
             gpsDialog += 1;
         }
-//
-//        String statusOrder = getArguments().getString(SUCCESS_ORDER);
-//        if (statusOrder != null) {
-//            AlertDialog.Builder alertadd = new AlertDialog.Builder(getActivity());
-//            LayoutInflater factory = LayoutInflater.from(getActivity());
-//            final View view = factory.inflate(R.layout.success_alert, null);
-//            alertadd.setView(view);
-//            alertadd.show();
-//        }
-//
-//        String statusChat = getArguments().getString(END_CHAT);
-//        if (statusChat != null) {
-//            AlertDialog.Builder alertadd = new AlertDialog.Builder(getActivity());
-//            LayoutInflater factory = LayoutInflater.from(getActivity());
-//            final View view = factory.inflate(R.layout.feedback_doctor_alert, null);
-//            alertadd.setView(view);
-//            alertadd.show();
-//        }
+
+        if (GlobalUserState.userSuccessOrder.equalsIgnoreCase("SUCCESS")) {
+            dialog.setContentView(R.layout.success_alert);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable((Color.TRANSPARENT)));
+            dialog.show();
+            GlobalUserState.userSuccessOrder = "ACCEPT";
+        }
+
+        if (GlobalUserState.userSuccessOrder.equalsIgnoreCase("END")) {
+            dialog.setContentView(R.layout.feedback_doctor_alert);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable((Color.TRANSPARENT)));
+            dialog.show();
+            GlobalUserState.userSuccessOrder = "START";
+        }
 
 
         binding.newsList.setHasFixedSize(true);
