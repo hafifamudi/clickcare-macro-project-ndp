@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -11,7 +12,10 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.docoding.clickcare.R;
+import com.docoding.clickcare.activities.dokter.ListChatPasienActivityTwo;
 import com.docoding.clickcare.databinding.ActivityLoginBinding;
+import com.docoding.clickcare.helper.Constants;
+import com.docoding.clickcare.helper.PreferenceManager;
 import com.docoding.clickcare.state.GlobalUserState;
 import com.google.android.gms.auth.api.identity.BeginSignInRequest;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -24,18 +28,24 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.pixplicity.easyprefs.library.Prefs;
+
+import java.util.Arrays;
+import java.util.List;
 
 
 public class LoginActivity extends AppCompatActivity {
     private ActivityLoginBinding binding;
-
+    private PreferenceManager preferenceManager;
     //    set varialbe for google sign
     private static final int REQ_ONE_TAP = 2;  // Can be any integer unique to the Activity.
     private boolean showOneTapUI = true;
     private BeginSignInRequest signInRequest;
     private GoogleSignInClient googleSignInClient;
+    private String redirectActivity;
 
     //    set firebase variable
     private FirebaseAuth firebaseAuth;
@@ -46,6 +56,14 @@ public class LoginActivity extends AppCompatActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+
+//        initialize preference
+        new Prefs.Builder()
+                .setContext(this)
+                .setMode(ContextWrapper.MODE_PRIVATE)
+                .setPrefsName(getPackageName())
+                .setUseDefaultSharedPreference(true)
+                .build();
 
         // set up google sign in
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -128,32 +146,58 @@ public class LoginActivity extends AppCompatActivity {
 
 
     private void signInWithEmailAndPassword(String email, String password, View view) {
-        firebaseAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            binding.loginProses.setVisibility(view.INVISIBLE);
+        String documentPath = "";
+        List<String> doctorList = Arrays.asList("drsrilestari@gmail.com", "drsultonhendra@gmail.com");
 
-                            // Sign in success, update UI with the signed-in user's information
-                            System.out.println("signInWithEmail:success");
-                            FirebaseUser user = firebaseAuth.getCurrentUser();
-                            System.out.println("=====user=====" + user.getEmail());
+        FirebaseFirestore database = FirebaseFirestore.getInstance();
 
-                            GlobalUserState.userAuthStatus = "login_true";
-                            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                            startActivity(intent);
-                            finish();
-                        } else {
-                            binding.loginProses.setVisibility(view.INVISIBLE);
-                            // If sign in fails, display a message to the user.
-                            binding.passwordLogin.setError("Password atau Email salah");
-                            Toast.makeText(LoginActivity.this, "Password atau Email Salah",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                    }
+        if (doctorList.contains(email)) {
+            documentPath = Constants.KEY_COLLECTION_DOCTORS;
+            this.redirectActivity = "ChatDoctorActivity.class";
+        } else {
+            documentPath = Constants.KEY_COLLECTION_USERS;
+            this.redirectActivity = "HomeActivity.class";
+        }
+
+        database.collection(documentPath)
+                .whereEqualTo(Constants.KEY_EMAIL, email)
+                .whereEqualTo(Constants.KEY_PASSWORD, password)
+                .get().addOnCompleteListener(task -> {
+            if (task.isSuccessful() && task.getResult() != null && task.getResult().getDocuments().size() > 0) {
+
+                DocumentSnapshot documentSnapshot = task.getResult().getDocuments().get(0);
+                Prefs.putBoolean(Constants.KEY_IS_SIGNED_IN, true);
+                Prefs.putString(Constants.KEY_USER_ID, documentSnapshot.getId());
+                Prefs.putString(Constants.KEY_NAME, documentSnapshot.getString(Constants.KEY_NAME));
+                Prefs.putString(Constants.KEY_EMAIL, documentSnapshot.getString(Constants.KEY_EMAIL));
+                Prefs.putString(Constants.KEY_IMAGE, documentSnapshot.getString(Constants.KEY_IMAGE));
+                Prefs.putString(Constants.KEY_PASSWORD, documentSnapshot.getString(Constants.KEY_PASSWORD));
+
+                if (this.redirectActivity.equalsIgnoreCase("ChatDoctorActivity.class")) {
+//                    set user login info
+                    Prefs.putString(Constants.KEY_LOGIN_INFO, "doctor");
+                    Prefs.putString(Constants.KEY_NAME_DOCTOR, documentSnapshot.getString(Constants.KEY_NAME_DOCTOR));
+                    Prefs.putString(Constants.KEY_DOCTOR_SPESIALIST, documentSnapshot.getString(Constants.KEY_DOCTOR_SPESIALIST));
+                    Prefs.putString(Constants.KEY_AVAILABILITY, documentSnapshot.getString(Constants.KEY_AVAILABILITY));
+                    Intent intent = new Intent(getApplicationContext(), ListChatPasienActivityTwo.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                } else {
+                    Prefs.putString(Constants.KEY_LOGIN_INFO, "pasien");
+                    GlobalUserState.userAuthStatus = "login_true";
+                    Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                }
+
+            } else {
+                binding.loginProses.setVisibility(view.INVISIBLE);
+                // If sign in fails, display a message to the user.
+                binding.passwordLogin.setError("Password atau Email salah");
+                Toast.makeText(LoginActivity.this, "Password atau Email Salah",
+                        Toast.LENGTH_SHORT).show();
+            }
         });
-
     }
 
     @Override

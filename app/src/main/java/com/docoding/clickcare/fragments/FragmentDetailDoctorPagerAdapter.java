@@ -26,13 +26,6 @@ public class FragmentDetailDoctorPagerAdapter extends FragmentPagerAdapter {
         switch (position) {
             case 0:
                 DetailDoctorFragment detailDoctor = new DetailDoctorFragment();
-                Bundle bundle = new Bundle();
-                bundle.putString("DOCTOR_REVIEW", GlobalUserState.doctorReview);
-                bundle.putString("DOCTOR_NUMBER", GlobalUserState.doctorNumber);
-                bundle.putString("DOCTOR_PRICE", GlobalUserState.doctorPrice);
-                bundle.putString("DOCTOR_PASIEN", GlobalUserState.doctorPasien);
-                bundle.putString("DOCTOR_EXPERIENCE", GlobalUserState.doctorExperience);
-                detailDoctor.setArguments(bundle);
                 return detailDoctor;
             case 1:
                 FeedbackDoctorFragement feedbackDoctor = new FeedbackDoctorFragement();

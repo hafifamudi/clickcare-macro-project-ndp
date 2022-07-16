@@ -49,6 +49,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import java.util.ArrayList;
 
@@ -56,6 +59,7 @@ public class HomeUserLogin extends Fragment {
     private FragmentHomeUserLoginBinding binding;
     private ArrayList<NewsModel> listNews = new ArrayList<>();
     private ResultReceiver resultReceiver;
+    private FirebaseFirestore firebaseFirestore;
     private static final int REQUEST_CODE_LOCATION_PERMISSION = 1;
 
     //    set firebase variable
@@ -78,6 +82,7 @@ public class HomeUserLogin extends Fragment {
         binding = FragmentHomeUserLoginBinding.inflate(inflater, container, false);
         View viewBinding = binding.getRoot();
         firebaseAuth = FirebaseAuth.getInstance();
+        firebaseFirestore = FirebaseFirestore.getInstance();
 
         listNews.addAll(NewsDummy.ListData());
         showRecycleListNews();
@@ -298,31 +303,34 @@ public class HomeUserLogin extends Fragment {
     private void signInWithEmailAndPassword(String email, String password, BottomSheetDialog bottomSheet, View view) {
         ProgressBar loginProses = view.findViewById(R.id.login_proses);
 
-        firebaseAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-//                            loginProses.setVisibility(view.INVISIBLE);
+        firebaseFirestore.collection(Constants.KEY_COLLECTION_USERS)
+                .whereEqualTo(Constants.KEY_EMAIL, email)
+                .whereEqualTo(Constants.KEY_PASSWORD, password)
+                .get().addOnCompleteListener(task -> {
+            if (task.isSuccessful() && task.getResult() != null && task.getResult().getDocuments().size() > 0) {
 
-                            // Sign in success, update UI with the signed-in user's information
-                            System.out.println("signInWithEmail:success");
-                            FirebaseUser user = firebaseAuth.getCurrentUser();
-                            System.out.println("=====user=====" + user.getEmail());
+                DocumentSnapshot documentSnapshot = task.getResult().getDocuments().get(0);
+                Prefs.putBoolean(Constants.KEY_IS_SIGNED_IN, true);
+                Prefs.putString(Constants.KEY_USER_ID, documentSnapshot.getId());
+                Prefs.putString(Constants.KEY_NAME, documentSnapshot.getString(Constants.KEY_NAME));
+                Prefs.putString(Constants.KEY_EMAIL, documentSnapshot.getString(Constants.KEY_EMAIL));
+                Prefs.putString(Constants.KEY_IMAGE, documentSnapshot.getString(Constants.KEY_IMAGE));
+                Prefs.putString(Constants.KEY_PASSWORD, documentSnapshot.getString(Constants.KEY_PASSWORD));
+                Prefs.putString(Constants.KEY_LOGIN_INFO, "pasien");
 
-                            loginProses.setVisibility(view.VISIBLE);
-                            bottomSheet.dismiss();
-                            GlobalUserState.userAuthStatus = "login_true";
-                            replaceFragment(new HomeNoLoginUser());
-                        } else {
-//                            loginProses.setVisibility(view.INVISIBLE);
-                            // If sign in fails, display a message to the user.
-                            Toast.makeText(getActivity(), "Password atau Email Salah",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+                GlobalUserState.userAuthStatus = "login_true";
+                loginProses.setVisibility(view.VISIBLE);
+                bottomSheet.dismiss();
+                GlobalUserState.userAuthStatus = "login_true";
+                replaceFragment(new HomeNoLoginUser());
 
+            } else {
+                // If sign in fails, display a message to the user.
+                Toast.makeText(getActivity(), "Password atau Email Salah",
+                        Toast.LENGTH_SHORT).show();
+            }
+
+        });
     }
 
     private void replaceFragment(Fragment fragment) {

@@ -55,8 +55,6 @@ public class HomeActivity extends AppCompatActivity {
             replaceFragment(new HomeNoLoginUser());
         }
         binding.bottomNavigation.setOnNavigationItemSelectedListener(navListener);
-
-        System.out.println(GlobalUserState.userAuthStatus);
     }
 
 

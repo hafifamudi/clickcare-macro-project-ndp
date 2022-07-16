@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import com.docoding.clickcare.R;
 import com.docoding.clickcare.databinding.RegisterActivityBinding;
+import com.docoding.clickcare.helper.Constants;
+import com.docoding.clickcare.helper.PreferenceManager;
 import com.docoding.clickcare.model.UserModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -24,7 +26,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -32,15 +33,13 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import org.jasypt.util.password.BasicPasswordEncryptor;
-
 import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
     private RegisterActivityBinding binding;
-
+    private PreferenceManager preferenceManager;
     //    Firebase Variable
     private FirebaseStorage firebaseStorage;
     private FirebaseFirestore firebaseFirestore;
@@ -57,6 +56,8 @@ public class RegisterActivity extends AppCompatActivity {
         binding = RegisterActivityBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+
+        preferenceManager = new PreferenceManager(getApplicationContext());
 
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -169,10 +170,6 @@ public class RegisterActivity extends AppCompatActivity {
                             // get the user UID
                             currentUser = firebaseAuth.getCurrentUser();
                             sendDataToRealTimeDatabase(currentUser.getUid());
-
-//                          direct to login
-                            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                            startActivity(intent);
                         } else {
                             binding.registerProses.setVisibility(view.INVISIBLE);
                             Toast.makeText(getApplicationContext(), "Gagal melakukan registrasi",
@@ -185,6 +182,7 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onFailure(@NonNull Exception e) {
                         Toast.makeText(getApplicationContext(), "Gagal melakukan registrasi",
                                 Toast.LENGTH_SHORT).show();
+                        System.out.println(e.getMessage());
                     }
                 });
     }
@@ -236,6 +234,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
+                        System.out.println("Gagal Upload image==============");
                         Toast.makeText(getApplicationContext(), "URI get Failed", Toast.LENGTH_SHORT).show();
                     }
 
@@ -253,29 +252,31 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void sendDataTocloudFirestore() {
-//        Hashing the password
-        BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
-        String encryptedPassword = passwordEncryptor.encryptPassword(binding.passwordRegister.getText().toString().trim());
+        FirebaseFirestore database = FirebaseFirestore.getInstance();
 
-        DocumentReference documentReference = firebaseFirestore.collection("Users").document(currentUser.getUid());
         Map<String, Object> userdata = new HashMap<>();
         userdata.put("uid", currentUser.getUid());
         userdata.put("name", binding.usernameRegister.getText().toString().trim());
         userdata.put("email", binding.emailRegister.getText().toString().trim());
-        userdata.put("password", encryptedPassword);
+        userdata.put("password", binding.passwordRegister.getText().toString().trim());
         userdata.put("image", imageUriAccessToken);
         userdata.put("status", "Online");
+        database.collection(Constants.KEY_COLLECTION_USERS).add(userdata).addOnSuccessListener(documentReference -> {
+            preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN, true);
+            preferenceManager.putString(Constants.KEY_USER_ID, documentReference.getId());
+            preferenceManager.putString(Constants.KEY_NAME, binding.usernameRegister.getText().toString());
+            preferenceManager.putString(Constants.KEY_IMAGE, imageUriAccessToken);
+            preferenceManager.putString("uid", documentReference.getId());
+            preferenceManager.putString("name", binding.usernameRegister.getText().toString());
+            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
 
-        documentReference.set(userdata).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                Toast.makeText(getApplicationContext(), "Data on Cloud Firestore send success", Toast.LENGTH_SHORT).show();
-
-
-            }
         }).addOnFailureListener(this, new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
+                System.out.println("error ================");
+                System.out.println(e.getMessage());
                 Toast.makeText(getApplicationContext(), "Failed to send data to firestore" + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

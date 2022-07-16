@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.preference.Preference;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,8 @@ import android.widget.Toast;
 import com.docoding.clickcare.R;
 import com.docoding.clickcare.databinding.FragmentBookAntrianPasienBinding;
 import com.docoding.clickcare.databinding.FragmentHomeUserLoginBinding;
+import com.docoding.clickcare.helper.Constants;
+import com.docoding.clickcare.helper.PreferenceManager;
 import com.docoding.clickcare.state.GlobalUserState;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -27,6 +30,9 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.pixplicity.easyprefs.library.Prefs;
+
+import kotlin.jvm.internal.PackageReference;
 
 
 public class BookAntrianPasien extends Fragment {
@@ -53,7 +59,8 @@ public class BookAntrianPasien extends Fragment {
         binding = FragmentBookAntrianPasienBinding.inflate(inflater, container, false);
         View viewBinding = binding.getRoot();
 
-        if (firebaseAuth.getCurrentUser() == null) {
+
+        if (Prefs.getString(Constants.KEY_EMAIL) == null) {
             BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(
                     getActivity(), R.style.BottomSheetDialogTheme
             );
