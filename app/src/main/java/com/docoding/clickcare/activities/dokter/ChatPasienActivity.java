@@ -1,10 +1,9 @@
-package com.docoding.clickcare.activities.pasien;
+package com.docoding.clickcare.activities.dokter;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.util.Base64;
 import android.view.View;
 import android.widget.Toast;
@@ -12,9 +11,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 import com.bumptech.glide.Glide;
-import com.docoding.clickcare.activities.dokter.BaseActivity;
-import com.docoding.clickcare.activities.dokter.ChatPasienActivity;
-import com.docoding.clickcare.activities.dokter.ListChatPasienActivityTwo;
 import com.docoding.clickcare.adapter.ChatAdapter;
 import com.docoding.clickcare.databinding.ActivityChatPasienBinding;
 import com.docoding.clickcare.databinding.ActivityListChatPasienBinding;
@@ -46,12 +42,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.TimeZone;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ChatDoctorActivity extends BaseActivity {
+public class ChatPasienActivity extends BaseActivity {
     private ActivityChatPasienBinding binding;
     private User receiverUser;
     private List<ChatMessage> chatMessages;
@@ -72,6 +69,9 @@ public class ChatDoctorActivity extends BaseActivity {
     }
 
     private void init() {
+        binding.endChat.setVisibility(View.GONE);
+        binding.chatDuration.setVisibility(View.GONE);
+
         chatMessages = new ArrayList<>();
         chatAdapter = new ChatAdapter(
                 chatMessages, receiverUser.image,
@@ -79,22 +79,6 @@ public class ChatDoctorActivity extends BaseActivity {
         );
         binding.chatRecyclerView.setAdapter(chatAdapter);
         database = FirebaseFirestore.getInstance();
-
-        new CountDownTimer(60000, 1000) {
-
-            public void onTick(long millisUntilFinished) {
-                binding.chatDuration.setText(
-                        ((millisUntilFinished / 1000) / 60) +" Menit " + ((millisUntilFinished / 1000) % 60) + " Detik"
-                );
-            }
-
-            public void onFinish() {
-                binding.chatDuration.setText("Selesai");
-                Intent listChatDoctor = new Intent(ChatDoctorActivity.this, DoctorConsultantActivity.class);
-                startActivity(listChatDoctor);
-                finish();
-            }
-        }.start();
     }
 
     private void sendMessage() {
@@ -104,6 +88,7 @@ public class ChatDoctorActivity extends BaseActivity {
         message.put(Constants.KEY_MESSAGE, binding.inputMessage.getText().toString());
         message.put(Constants.KEY_TIMESTAMP, new Date());
         database.collection(Constants.KEY_COLLECTION_CHAT).add(message);
+        System.out.println("message sent" + message);
         if (conversionId != null) {
             updateConversion(binding.inputMessage.getText().toString());
         } else {
@@ -181,30 +166,29 @@ public class ChatDoctorActivity extends BaseActivity {
     }
 
     private void listenAvailabilityOfReceiver() {
-        database.collection(Constants.KEY_COLLECTION_DOCTORS).document(
-                receiverUser.id
-        ).addSnapshotListener(ChatDoctorActivity.this, (value, error) -> {
-            if (error != null) {
-                return;
-            }
-            if (value != null) {
-                if (value.getString(Constants.KEY_AVAILABILITY) != null) {
-                    String availability = value.getString(Constants.KEY_AVAILABILITY);
-                    isReceiverAvailable = availability.equals("1");
-                }
-                receiverUser.token = value.getString(Constants.KEY_FCM_TOKEN);
-                if (receiverUser.image == null) {
-                    receiverUser.image = value.getString(Constants.KEY_IMAGE);
-                    chatAdapter.setReceiverProfileImage(receiverUser.image);
-                    chatAdapter.notifyItemRangeChanged(0, chatMessages.size());
-                }
-            }
-            if (isReceiverAvailable) {
-                binding.onlineStatus.setVisibility(View.VISIBLE);
-            } else {
-                binding.onlineStatus.setVisibility(View.GONE);
-            }
-        });
+        database.collection(Constants.KEY_COLLECTION_USERS).document(receiverUser.id).
+                addSnapshotListener(ChatPasienActivity.this, (value, error) -> {
+                    if (error != null) {
+                        return;
+                    }
+                    if (value != null) {
+                        if (value.getString(Constants.KEY_AVAILABILITY) != null) {
+                            String availability = value.getString(Constants.KEY_AVAILABILITY);
+                            isReceiverAvailable = availability.equals("1");
+                        }
+                        receiverUser.token = value.getString(Constants.KEY_FCM_TOKEN);
+                        if (receiverUser.image == null) {
+                            receiverUser.image = value.getString(Constants.KEY_IMAGE);
+                            chatAdapter.setReceiverProfileImage(receiverUser.image);
+                            chatAdapter.notifyItemRangeChanged(0, chatMessages.size());
+                        }
+                    }
+                    if (isReceiverAvailable) {
+                        binding.onlineStatus.setVisibility(View.VISIBLE);
+                    } else {
+                        binding.onlineStatus.setVisibility(View.GONE);
+                    }
+                });
     }
 
     private void listenMessage() {
@@ -220,6 +204,7 @@ public class ChatDoctorActivity extends BaseActivity {
 
     private final EventListener<QuerySnapshot> eventListener = ((value, error) -> {
         if (error != null) return;
+        if (value.size() == 0) return;
 
         if (value != null) {
             int count = chatMessages.size();
@@ -267,17 +252,11 @@ public class ChatDoctorActivity extends BaseActivity {
 
     private void setListeners() {
         binding.imageBack.setOnClickListener(v -> {
-            Intent listChatPasien = new Intent(ChatDoctorActivity.this, DoctorConsultantActivity.class);
+            Intent listChatPasien = new Intent(ChatPasienActivity.this, ListChatPasienActivityTwo.class);
             startActivity(listChatPasien);
             finish();
         });
         binding.layoutSend.setOnClickListener(v -> sendMessage());
-
-        binding.endChat.setOnClickListener(view -> {
-            Intent listChatDoctor = new Intent(ChatDoctorActivity.this, DoctorConsultantActivity.class);
-            startActivity(listChatDoctor);
-            finish();
-        });
     }
 
     private String getReadabledateTime(Date date) {

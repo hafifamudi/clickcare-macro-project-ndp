@@ -26,6 +26,8 @@ import com.docoding.clickcare.adapter.NewsAdapter;
 import com.docoding.clickcare.databinding.FragmentHomeNoLoginUserBinding;
 import com.docoding.clickcare.databinding.FragmentHomeUserLoginBinding;
 import com.docoding.clickcare.dummydata.NewsDummy;
+import com.docoding.clickcare.helper.Constants;
+import com.docoding.clickcare.helper.PreferenceManager;
 import com.docoding.clickcare.model.NewsModel;
 import com.docoding.clickcare.model.UserModel;
 import com.docoding.clickcare.state.GlobalUserState;
@@ -38,6 +40,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import java.util.ArrayList;
 
@@ -46,7 +49,6 @@ public class HomeNoLoginUser extends Fragment {
     private FragmentHomeNoLoginUserBinding binding;
     private Dialog dialog;
     private ArrayList<NewsModel> listNews = new ArrayList<>();
-
     private FirebaseAuth firebaseAuth;
     private FirebaseStorage firebaseStorage;
     private StorageReference storageReference;
@@ -82,13 +84,8 @@ public class HomeNoLoginUser extends Fragment {
         listNews.addAll(NewsDummy.ListData());
         showRecycleListNews();
 
-//     cek if user already login or not
-
+//      cek if user already login or not
         if (gpsDialog == 0) {
-//            AlertDialog.Builder alertadd = new AlertDialog.Builder(getActivity());
-//            LayoutInflater factory = LayoutInflater.from(getActivity());
-//            final View view = factory.inflate(R.layout.permission_alert, null);
-//            alertadd.setView(view);
             dialog.setContentView(R.layout.permission_alert);
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable((Color.TRANSPARENT)));
             dialog.show();
@@ -118,7 +115,6 @@ public class HomeNoLoginUser extends Fragment {
             GlobalUserState.userSuccessOrder = "START";
         }
 
-
         binding.newsList.setHasFixedSize(true);
 
         binding.konsultasiActivity.setOnClickListener(new View.OnClickListener() {
@@ -145,37 +141,11 @@ public class HomeNoLoginUser extends Fragment {
             }
         });
 
-
 //      update user profile in home activity
-        DatabaseReference databaseReference = firebaseDatabase.getReference(firebaseAuth.getCurrentUser().getUid());
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                UserModel userProfile = snapshot.getValue(UserModel.class);
-                binding.usernameHome.setText(userProfile.getUsername());
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getActivity(), "Failed To Fetch", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-//      get user photo
-        storageReference = firebaseStorage.getReference();
-        storageReference.child("Images").child(
-                firebaseAuth.getCurrentUser().getUid())
-                .child("Profile Pic").getDownloadUrl()
-                .addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
-                        imageURIacessToken = uri.toString();
-                        Glide.with(getActivity())
-                                .load(uri)
-                                .into(binding.imgItemPhotoUser);
-                    }
-                });
-
+        binding.usernameHome.setText(Prefs.getString(Constants.KEY_NAME));
+        Glide.with(getActivity())
+                .load(Prefs.getString(Constants.KEY_IMAGE))
+                .into(binding.imgItemPhotoUser);
 
         return viewBinding;
     }

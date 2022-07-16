@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -29,8 +30,9 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.docoding.clickcare.R;
-import com.docoding.clickcare.databinding.FragmentHomeUserLoginBinding;
+import com.docoding.clickcare.activities.dokter.ListChatPasienActivityTwo;
 import com.docoding.clickcare.databinding.FragmentSettingUserBinding;
+import com.docoding.clickcare.helper.Constants;
 import com.docoding.clickcare.model.UserModel;
 import com.docoding.clickcare.state.GlobalUserState;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -49,10 +51,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -63,15 +69,14 @@ import java.util.Map;
 public class SettingUser extends Fragment {
     private FragmentSettingUserBinding binding;
     private Dialog dialog;
-    private FirebaseDatabase firebaseDatabase;
-    private FirebaseAuth firebaseAuth;
     private FirebaseStorage firebaseStorage;
     private StorageReference storageReference;
     private FirebaseFirestore firebaseFirestore;
+    private DocumentReference documentReference;
 
+    private final int PICK_IMAGE_REQUEST = 22;
     private String imageURIacessToken;
     private static int PICK_IMAGE = 123;
-    private String newUsernameUser;
     private Uri imagePath;
     ImageView userPhotoProfile;
 
@@ -82,7 +87,6 @@ public class SettingUser extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -91,14 +95,13 @@ public class SettingUser extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentSettingUserBinding.inflate(inflater, container, false);
         View viewBinding = binding.getRoot();
-
         dialog = new Dialog(getActivity());
 
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        firebaseAuth = firebaseAuth.getInstance();
         firebaseStorage = firebaseStorage.getInstance();
+        firebaseFirestore = firebaseFirestore.getInstance();
+        storageReference = firebaseStorage.getReference();
 
-        if (firebaseAuth.getCurrentUser() == null) {
+        if (Prefs.getString(Constants.KEY_EMAIL) == null) {
             BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(
                     getActivity(), R.style.BottomSheetDialogTheme
             );
@@ -152,52 +155,32 @@ public class SettingUser extends Fragment {
                 TextView usernameProfile;
                 EditText usernameInput;
 
-                if (firebaseAuth.getCurrentUser() != null) {
+                if (Prefs.getString(Constants.KEY_EMAIL) != null) {
 
                     dialog.setContentView(R.layout.change_profile_user);
                     dialog.getWindow().setBackgroundDrawable(new ColorDrawable((Color.TRANSPARENT)));
-//              set value to variable
+//                  set value to variable
                     doneChange = dialog.findViewById(R.id.done_change);
                     usernameProfile = dialog.findViewById(R.id.username);
                     userPhotoProfile = dialog.findViewById(R.id.doctor_photo);
                     usernameInput = dialog.findViewById(R.id.username_input);
 
-//              get user info
-                    DatabaseReference databaseReference = firebaseDatabase.getReference(firebaseAuth.getCurrentUser().getUid());
-                    databaseReference.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            UserModel userProfile = snapshot.getValue(UserModel.class);
-                            usernameProfile.setText(userProfile.getUsername());
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-                            Toast.makeText(getActivity(), "Failed To Fetch", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-
-//               get user photo
-                    storageReference = firebaseStorage.getReference();
-                    storageReference.child("Images").child(
-                            firebaseAuth.getCurrentUser().getUid())
-                            .child("Profile Pic").getDownloadUrl()
-                            .addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                @Override
-                                public void onSuccess(Uri uri) {
-                                    imageURIacessToken = uri.toString();
-                                    Glide.with(getActivity())
-                                            .load(uri)
-                                            .into(userPhotoProfile);
-                                }
-                            });
-
-//              update image
+                    usernameProfile.setText(Prefs.getString(Constants.KEY_NAME));
+                    Glide.with(getActivity())
+                            .load(Prefs.getString(Constants.KEY_IMAGE))
+                            .into(userPhotoProfile);
+//                  update image
                     userPhotoProfile.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
-                            startActivityForResult(intent, PICK_IMAGE);
+                            Intent intent = new Intent();
+                            intent.setType("image/*");
+                            intent.setAction(Intent.ACTION_GET_CONTENT);
+                            startActivityForResult(
+                                    Intent.createChooser(
+                                            intent,
+                                            "Select Image from here..."),
+                                    PICK_IMAGE_REQUEST);
                         }
                     });
 
@@ -206,8 +189,6 @@ public class SettingUser extends Fragment {
                         @Override
                         public void onClick(View view) {
                             String newUsername = usernameInput.getText().toString().trim();
-                            newUsernameUser = newUsername;
-
                             boolean isEmptyField = false;
 
                             if (TextUtils.isEmpty(newUsername)) {
@@ -215,19 +196,15 @@ public class SettingUser extends Fragment {
                                 usernameInput.setError("Mohon untuk Field username di isi");
 
                             } else if (imagePath != null && !isEmptyField) {
-                                UserModel userNewProfile = new UserModel();
-                                userNewProfile.setUserUID(firebaseAuth.getCurrentUser().getUid());
-                                userNewProfile.setUsername(newUsername);
-
-                                databaseReference.setValue(userNewProfile);
+//                              update name in local storage
+                                Prefs.putString(Constants.KEY_NAME, newUsername);
                                 updateimagetostorage();
+                                dialog.dismiss();
                             } else if (imagePath == null && !isEmptyField) {
-                                UserModel userNewProfile = new UserModel();
-                                userNewProfile.setUserUID(firebaseAuth.getCurrentUser().getUid());
-                                userNewProfile.setUsername(newUsername);
-                                databaseReference.setValue(userNewProfile);
+                                Prefs.putString(Constants.KEY_NAME, newUsername);
                                 updatenameoncloudfirestore();
                                 Toast.makeText(getActivity(), "Updated", Toast.LENGTH_SHORT).show();
+                                dialog.dismiss();
                             }
                         }
                     });
@@ -244,12 +221,7 @@ public class SettingUser extends Fragment {
                 EditText oldPassword, newPassword;
                 Button doneChangePassword;
 
-                if (firebaseAuth.getCurrentUser() != null) {
-
-//                AlertDialog.Builder alertadd = new AlertDialog.Builder(getActivity());
-//                LayoutInflater factory = LayoutInflater.from(getActivity());
-//                View viewDialog = factory.inflate(R.layout.change_user_password, null);
-//                alertadd.setView(viewDialog);
+                if (Prefs.getString(Constants.KEY_EMAIL) != null) {
 
                     dialog.setContentView(R.layout.change_user_password);
                     dialog.getWindow().setBackgroundDrawable(new ColorDrawable((Color.TRANSPARENT)));
@@ -264,41 +236,17 @@ public class SettingUser extends Fragment {
                             String oldPasswordValue = oldPassword.getText().toString();
                             String newPasswordValue = newPassword.getText().toString();
 
-//                      before changing the password, authenticate the user
+                            documentReference = firebaseFirestore.collection(Constants.KEY_COLLECTION_USERS)
+                                    .document(Prefs.getString(Constants.KEY_USER_ID));
 
-                            AuthCredential authCredential = EmailAuthProvider.getCredential(
-                                    firebaseAuth.getCurrentUser().getEmail(), oldPasswordValue);
-
-                            firebaseAuth.getCurrentUser().reauthenticate(authCredential)
-                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                        @Override
-                                        public void onSuccess(Void unused) {
-                                            firebaseAuth.getCurrentUser().updatePassword(newPasswordValue)
-                                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                        @Override
-                                                        public void onSuccess(Void unused) {
-                                                            Toast.makeText(getActivity(), "Password telah di Update",
-                                                                    Toast.LENGTH_SHORT).show();
-
-                                                        }
-                                                    })
-                                                    .addOnFailureListener(new OnFailureListener() {
-                                                        @Override
-                                                        public void onFailure(@NonNull Exception e) {
-                                                            Toast.makeText(getActivity(), "Password Gagal di Update" + e.getMessage(),
-                                                                    Toast.LENGTH_SHORT).show();
-                                                            System.out.println(e.getMessage());
-                                                        }
-                                                    });
-                                        }
-                                    }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(getActivity(), "Password Gagal di Update" + e.getMessage(),
-                                            Toast.LENGTH_SHORT).show();
-                                    System.out.println(e.getMessage());
-                                }
-                            });
+                            if (Prefs.getString(Constants.KEY_PASSWORD).equals(oldPasswordValue)) {
+                                documentReference.update(Constants.KEY_PASSWORD, newPasswordValue);
+//                              update password in local storage
+                                Prefs.putString(Constants.KEY_PASSWORD, newPasswordValue);
+                                dialog.dismiss();
+                                Toast.makeText(getActivity(), "Password berhasil di ubah", Toast.LENGTH_SHORT).show();
+                            } else
+                                Toast.makeText(getActivity(), "Password lama anda salah", Toast.LENGTH_SHORT).show();
                         }
                     });
                     dialog.show();
@@ -312,20 +260,38 @@ public class SettingUser extends Fragment {
         binding.logoutUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (firebaseAuth.getCurrentUser() != null) {
-                    firebaseAuth.signOut();
-                    Intent loginActivity = new Intent(getActivity(), LoginActivity.class);
-                    startActivity(loginActivity);
-                    return;
-                }
-                Toast.makeText(getActivity(), "Mohon Login Terlebih Dahulu", Toast.LENGTH_SHORT).show();
+                String collectionPath =
+                        Prefs.getString(Constants.KEY_LOGIN_INFO).equals("doctor") ? Constants.KEY_COLLECTION_DOCTORS : Constants.KEY_COLLECTION_USERS;
+                DocumentReference documentReference =
+                        firebaseFirestore.collection(collectionPath).document(
+                                Prefs.getString(Constants.KEY_USER_ID)
+                        );
+                HashMap<String, Object> updates = new HashMap<>();
+                documentReference.get()
+                        .addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                if (task.getResult().getString(Constants.KEY_FCM_TOKEN) != null) {
+                                    updates.put(Constants.KEY_FCM_TOKEN, FieldValue.delete());
+                                    documentReference.update(updates)
+                                            .addOnSuccessListener(unused -> {
+                                                Prefs.clear();
+                                                startActivity(new Intent(getActivity(), LoginActivity.class));
+                                            })
+                                            .addOnFailureListener(e -> Toast.makeText(getActivity(), "Mohon Login Terlebih Dahulu", Toast.LENGTH_SHORT).show());
+                                } else {
+                                    Prefs.clear();
+                                    startActivity(new Intent(getActivity(), LoginActivity.class));
+                                }
+                            }
+                        });
+
             }
         });
 
         binding.changeLanguage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (firebaseAuth.getCurrentUser() != null) {
+                if (Prefs.getString(Constants.KEY_EMAIL) != null) {
                     dialog.setContentView(R.layout.change_language_user);
                     dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                     dialog.show();
@@ -340,11 +306,13 @@ public class SettingUser extends Fragment {
 
     private void updatenameoncloudfirestore() {
 
-        DocumentReference documentReference = firebaseFirestore.collection("Users").document(firebaseAuth.getCurrentUser().getUid());
+        DocumentReference documentReference = firebaseFirestore.collection(Constants.KEY_COLLECTION_USERS).document(Prefs.getString(Constants.KEY_USER_ID));
         Map<String, Object> userdata = new HashMap<>();
-        userdata.put("name", newUsernameUser);
-        userdata.put("image", imageURIacessToken);
-        userdata.put("uid", firebaseAuth.getCurrentUser().getUid());
+        userdata.put("name", Prefs.getString(Constants.KEY_NAME));
+        userdata.put("image", imageURIacessToken != null ? imageURIacessToken : Prefs.getString(Constants.KEY_IMAGE));
+        userdata.put("password", Prefs.getString(Constants.KEY_PASSWORD));
+        userdata.put("email", Prefs.getString(Constants.KEY_EMAIL));
+        userdata.put("uid", Prefs.getString(Constants.KEY_USER_ID));
         userdata.put("status", "Online");
 
 
@@ -362,7 +330,7 @@ public class SettingUser extends Fragment {
     private void updateimagetostorage() {
 
 
-        StorageReference imageref = storageReference.child("Images").child(firebaseAuth.getCurrentUser().getUid()).child("Profile Pic");
+        StorageReference imageref = storageReference.child("Images").child(Prefs.getString(Constants.KEY_USER_ID)).child("Profile Pic");
 
         //Image compresesion
 
@@ -390,6 +358,7 @@ public class SettingUser extends Fragment {
                     public void onSuccess(Uri uri) {
                         imageURIacessToken = uri.toString();
                         Toast.makeText(getActivity(), "URI get sucess", Toast.LENGTH_SHORT).show();
+                        Prefs.putString(Constants.KEY_IMAGE, imageURIacessToken);
                         updatenameoncloudfirestore();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -414,31 +383,34 @@ public class SettingUser extends Fragment {
     private void signInWithEmailAndPassword(String email, String password, BottomSheetDialog bottomSheet, View view) {
         ProgressBar loginProses = view.findViewById(R.id.login_proses);
 
-        firebaseAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-//                            loginProses.setVisibility(view.INVISIBLE);
+        firebaseFirestore.collection(Constants.KEY_COLLECTION_USERS)
+                .whereEqualTo(Constants.KEY_EMAIL, email)
+                .whereEqualTo(Constants.KEY_PASSWORD, password)
+                .get().addOnCompleteListener(task -> {
+            if (task.isSuccessful() && task.getResult() != null && task.getResult().getDocuments().size() > 0) {
 
-                            // Sign in success, update UI with the signed-in user's information
-                            System.out.println("signInWithEmail:success");
-                            FirebaseUser user = firebaseAuth.getCurrentUser();
-                            System.out.println("=====user=====" + user.getEmail());
+                DocumentSnapshot documentSnapshot = task.getResult().getDocuments().get(0);
+                Prefs.putBoolean(Constants.KEY_IS_SIGNED_IN, true);
+                Prefs.putString(Constants.KEY_USER_ID, documentSnapshot.getId());
+                Prefs.putString(Constants.KEY_NAME, documentSnapshot.getString(Constants.KEY_NAME));
+                Prefs.putString(Constants.KEY_EMAIL, documentSnapshot.getString(Constants.KEY_EMAIL));
+                Prefs.putString(Constants.KEY_IMAGE, documentSnapshot.getString(Constants.KEY_IMAGE));
+                Prefs.putString(Constants.KEY_PASSWORD, documentSnapshot.getString(Constants.KEY_PASSWORD));
+                Prefs.putString(Constants.KEY_LOGIN_INFO, "pasien");
 
-                            loginProses.setVisibility(view.VISIBLE);
-                            bottomSheet.dismiss();
-                            GlobalUserState.userAuthStatus = "login_true";
-                            replaceFragment(new HomeNoLoginUser());
-                        } else {
-//                            loginProses.setVisibility(view.INVISIBLE);
-                            // If sign in fails, display a message to the user.
-                            Toast.makeText(getActivity(), "Password atau Email Salah",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+                GlobalUserState.userAuthStatus = "login_true";
+                loginProses.setVisibility(view.VISIBLE);
+                bottomSheet.dismiss();
+                GlobalUserState.userAuthStatus = "login_true";
+                replaceFragment(new HomeNoLoginUser());
 
+            } else {
+                // If sign in fails, display a message to the user.
+                Toast.makeText(getActivity(), "Password atau Email Salah",
+                        Toast.LENGTH_SHORT).show();
+            }
+
+        });
     }
 
     private void replaceFragment(Fragment fragment) {
@@ -448,5 +420,19 @@ public class SettingUser extends Fragment {
         fragmentTransaction.commit();
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode,
+                resultCode,
+                data);
 
+        if (requestCode == PICK_IMAGE_REQUEST
+                && resultCode == getActivity().RESULT_OK
+                && data != null
+                && data.getData() != null) {
+
+            // Get the Uri of data
+            imagePath = data.getData();
+        }
+    }
 }

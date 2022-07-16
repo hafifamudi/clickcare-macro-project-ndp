@@ -61,6 +61,7 @@
 
                 <EditText
                     android:layout_width="328dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:background="@drawable/button_secondary"
@@ -78,11 +79,36 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/doctor_list"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:listitem="@layout/doctor_list" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/doctor_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:listitem="@layout/doctor_list" />
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="22dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:id="@+id/textErrorMessage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginStart="24dp"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/inter_semibold"
+                    android:visibility="gone"/>
+            </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>
 

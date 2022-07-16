@@ -5,6 +5,12 @@
       <map>
         <entry key="..\:/Users/hafifamudi/.gradle/caches/transforms-3/54b94cbbd05702a3fb8271920e147c6c/transformed/appcompat-1.4.1/res/drawable/abc_ic_arrow_drop_right_black_24dp.xml" value="0.1045" />
         <entry key="..\:/Users/hafifamudi/.gradle/caches/transforms-3/f5e2e2986eae4af479911099c0918c42/transformed/jetified-expandablelayout-1.0.7/res/drawable/ic_arrow_down.xml" value="0.2075" />
+        <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/drawable/background_chat_input.xml" value="0.1" />
+        <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/drawable/background_content_bottom.xml" value="0.1245" />
+        <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/drawable/background_content_top.xml" value="0.1" />
+        <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/drawable/background_image.xml" value="0.1" />
+        <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/drawable/background_received_message.xml" value="0.1245" />
+        <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/drawable/background_sent_message.xml" value="0.1245" />
         <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/drawable/border_top_bottom.xml" value="0.1" />
         <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/drawable/bottom_nav_color.xml" value="0.1" />
         <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/drawable/bottom_sheet_bacground.xml" value="0.107" />
@@ -24,6 +30,7 @@
         <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/drawable/ic_baseline_arrow_back_ios_24.xml" value="0.1" />
         <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/drawable/ic_baseline_info_24_danger.xml" value="0.179" />
         <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.1" />
+        <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/drawable/ic_notifications.xml" value="0.1" />
         <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/drawable/image_border.xml" value="0.179" />
         <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/drawable/mtrl_navigation_bar_ripple_color.xml" value="0.1" />
         <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/drawable/receiving_chat.xml" value="0.179" />
@@ -32,7 +39,8 @@
         <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/drawable/start_end_radius_two.xml" value="0.179" />
         <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/layout/activity_antrian_pasien.xml" value="0.2" />
         <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/layout/activity_book_antrian_pasien.xml" value="0.22" />
-        <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/layout/activity_chat_doctor.xml" value="0.25" />
+        <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/layout/activity_chat_doctor.xml" value="0.18" />
+        <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/layout/activity_chat_pasien.xml" value="0.18" />
         <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/layout/activity_detail_doctor.xml" value="0.22" />
         <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/layout/activity_detail_registrasi.xml" value="0.25" />
         <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/layout/activity_doctor_consultant.xml" value="0.22" />
@@ -41,6 +49,9 @@
         <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/layout/activity_forgot_password2.xml" value="0.22" />
         <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/layout/activity_home.xml" value="0.2" />
         <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/layout/activity_info_app.xml" value="0.25" />
+        <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/layout/activity_list_chat_pasien.xml" value="0.22" />
+        <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/layout/activity_list_chat_pasien_two.xml" value="0.22" />
+        <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/layout/activity_list_chat_pasien_view.xml" value="0.12" />
         <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/layout/activity_loading.xml" value="0.25" />
         <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/layout/activity_onboarding.xml" value="0.2" />
@@ -54,6 +65,7 @@
         <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/layout/change_language_user.xml" value="0.33" />
         <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/layout/change_profile_user.xml" value="0.25" />
         <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/layout/change_user_password.xml" value="0.25" />
+        <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/layout/content_list_chat_pasien_view.xml" value="0.1078125" />
         <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/layout/doctor_list.xml" value="0.25" />
         <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/layout/feedback_doctor_alert.xml" value="0.25" />
         <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/layout/fragment_book_antrian_pasien.xml" value="0.1" />
@@ -66,6 +78,10 @@
         <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/layout/fragment_second.xml" value="0.12083333333333333" />
         <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/layout/fragment_setting_user.xml" value="0.25" />
         <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/layout/header_navigation_drawer.xml" value="0.22" />
+        <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/layout/item_container_received_message.xml" value="0.5" />
+        <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/layout/item_container_recent_conversion.xml" value="0.33" />
+        <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/layout/item_container_sent_message.xml" value="0.1" />
+        <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/layout/item_container_user.xml" value="0.1" />
         <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/layout/item_news.xml" value="0.33" />
         <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/layout/layout_parent.xml" value="0.25" />
         <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/layout/layout_parent_four.xml" value="0.33" />
@@ -79,10 +95,12 @@
         <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/layout/permission_alert.xml" value="0.33" />
         <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/layout/register_activity.xml" value="0.22" />
         <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/layout/register_bottom_sheet.xml" value="0.25" />
+        <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/layout/setting_doctor.xml" value="0.1105072463768116" />
         <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/layout/success_alert.xml" value="0.22" />
         <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/layout/widget_check.xml" value="0.75" />
         <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/menu/bottom_navigation.xml" value="0.2" />
         <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/menu/menu.xml" value="0.2" />
+        <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/menu/menu_main_doctor.xml" value="0.2" />
         <entry key="..\:/Users/hafifamudi/Documents/NDP/ClickCare/app/src/main/res/menu/navigation_drawer.xml" value="0.22" />
         <entry key="app/src/main/res/drawable/button_home_section.xml" value="0.1935185185185185" />
         <entry key="app/src/main/res/drawable/button_primary.xml" value="0.16" />

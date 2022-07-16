@@ -10,21 +10,17 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.docoding.clickcare.R;
+import com.docoding.clickcare.helper.Constants;
+import com.pixplicity.easyprefs.library.Prefs;
 
 public class DetailDoctorFragment extends Fragment {
-    private static final String DOCTOR_REVIEW= "DOCTOR_REVIEW";
-    private static final String DOCTOR_NUMBER = "DOCTOR_NUMBER";
-    private static final String DOCTOR_PRICE = "DOCTOR_PRICE";
-    private static final String DOCTOR_PASIEN = "DOCTOR_PASIEN";
-    private static final String DOCTOR_EXPERIENCE = "DOCTOR_EXPERIENCE";
-
     private TextView detailReview;
     private TextView detailNumber;
     private TextView detailPrice;
     private TextView detailPasien;
     private TextView detailExperience;
 
-    public DetailDoctorFragment() {
+    DetailDoctorFragment() {
         // Required empty public constructor
     }
 
@@ -46,17 +42,14 @@ public class DetailDoctorFragment extends Fragment {
         detailPasien = view.findViewById(R.id.doctor_detail_pasien);
         detailExperience = view.findViewById(R.id.doctor_detail_experience);
 
-        String review = getArguments().getString(DOCTOR_REVIEW);
-        String number = getArguments().getString(DOCTOR_NUMBER);
-        String price = getArguments().getString(DOCTOR_PRICE);
-        String pasien = getArguments().getString(DOCTOR_PASIEN);
-        String experience = getArguments().getString(DOCTOR_EXPERIENCE);
 
-        detailReview.setText(review);
-        detailNumber.setText(number);
-        detailPrice.setText(price);
-        detailPasien.setText(pasien);
-        detailExperience.setText(experience);
+        detailReview.setText(Prefs.getString(Constants.KEY_NAME_DOCTOR) +" adalah Dokter Spesialis " +
+                Prefs.getString(Constants.KEY_DOCTOR_SPESIALIST) + " dari Fakultas Kedokteran Universitas Asembagus, " +
+                "tahun 2015, beliau aktif praktik di RSUD Pasar Minggu. ");
+        detailNumber.setText("2324811213502858");
+        detailPrice.setText("Rp.20.000");
+        detailPasien.setText("600 +");
+        detailExperience.setText("5 Thn");
 
         return view;
     }
