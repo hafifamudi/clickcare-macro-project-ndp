@@ -17,7 +17,7 @@ public class DetailRegistrasi extends AppCompatActivity {
     private RegisterPasienViewModel viewModel;
     private ActivityDetailRegistrasiBinding binding;
     public static final String EXTRA_PASIEN = "extra_pasien";
-    private String name,nik,alamat,phoneNum,bpjsNum,keluhan,poli,dokter, date;
+    private String name,nik,alamat,phoneNum,bpjsNum,keluhan,poli,dokter, date, noAntrian;
 
     public static final String EXTRA_SELECTED_VALUE = "extra_selected_value";
     public static final int RESULT_CODE = 110;
@@ -38,14 +38,18 @@ public class DetailRegistrasi extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 getData();
-                viewModel.addRegisterToCloud(name, nik, alamat, phoneNum, bpjsNum, keluhan, poli, dokter, date);
+                viewModel.addRegisterToCloud(name, nik, alamat, phoneNum, bpjsNum, keluhan, poli, dokter, date, noAntrian);
 
                 Pasien pasien = new Pasien();
                 pasien.setName(name);
                 pasien.setDate(date);
                 pasien.setKeluhan(keluhan);
                 pasien.setDokter(dokter);
-                pasien.setNo_Antrian(binding.noAntrianRegister.toString().trim());
+                pasien.setNo_Antrian(noAntrian);
+
+//                Intent resultIntent = new Intent();
+//                resultIntent.putExtra(EXTRA_SELECTED_VALUE, pasien);
+//                setResult(RESULT_CODE, resultIntent);
 
                 Intent homeActivity = new Intent(DetailRegistrasi.this, HomeActivity.class);
                 GlobalUserState.userSuccessOrder = "ACCEPT";
@@ -56,7 +60,6 @@ public class DetailRegistrasi extends AppCompatActivity {
     }
 
     private void getData() {
-
         Pasien pasien = getIntent().getParcelableExtra(EXTRA_PASIEN);
         name = pasien.getName();
         nik = pasien.getNik();
@@ -64,10 +67,10 @@ public class DetailRegistrasi extends AppCompatActivity {
         phoneNum = pasien.getPhone();
         bpjsNum = pasien.getBpjs();
         keluhan = pasien.getKeluhan();
+        noAntrian = pasien.getNo_Antrian();
         poli = pasien.getPoli();
         dokter = pasien.getDokter();
         date = pasien.getDate();
-
     }
 
     private void setWidget() {

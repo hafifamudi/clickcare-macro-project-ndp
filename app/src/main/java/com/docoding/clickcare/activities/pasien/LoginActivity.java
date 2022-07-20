@@ -39,7 +39,6 @@ import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
     private ActivityLoginBinding binding;
-    private PreferenceManager preferenceManager;
     //    set varialbe for google sign
     private static final int REQ_ONE_TAP = 2;  // Can be any integer unique to the Activity.
     private boolean showOneTapUI = true;
