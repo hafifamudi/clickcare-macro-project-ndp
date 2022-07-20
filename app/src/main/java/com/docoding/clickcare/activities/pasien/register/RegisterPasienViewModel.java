@@ -21,7 +21,7 @@ public class RegisterPasienViewModel extends ViewModel {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     public void addRegisterToCloud(String name, String nik, String alamat, String phone, String bpjs,
-                                   String keluhan, String poli, String dokter, String date) {
+                                   String keluhan, String poli, String dokter, String date, String noAntrian) {
 
         CollectionReference cr = db.collection("pasien-register");
         Map<String, Object> pasienRegister = new HashMap<>();
@@ -32,7 +32,7 @@ public class RegisterPasienViewModel extends ViewModel {
         pasienRegister.put("keluhan", keluhan);
         pasienRegister.put("nama", name);
         pasienRegister.put("nik", nik);
-        pasienRegister.put("no_antrian", "C2-1");
+        pasienRegister.put("no_antrian", noAntrian);
         pasienRegister.put("no_bpjs", bpjs);
         pasienRegister.put("no_telepon", phone);
         pasienRegister.put("poli", poli);

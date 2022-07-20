@@ -23,7 +23,7 @@ import java.util.Calendar;
 public class RegisterPasienActivity extends AppCompatActivity {
     private ActivityRegisterPasienBinding binding;
 
-    private String name,nik,alamat,phoneNum,bpjsNum,keluhan,poli,dokter, date, valueDk, valuePoli;
+    private String name,nik,alamat,phoneNum,bpjsNum,keluhan,poli,dokter, date, valueDk, valuePoli, codePoli, codeDk, noAntrian;
     private  boolean check = false;
 
     @Override
@@ -54,7 +54,7 @@ public class RegisterPasienActivity extends AppCompatActivity {
                 pasien.setDate(date);
                 pasien.setKeluhan(keluhan);
                 pasien.setDokter(valueDk);
-                pasien.setNo_Antrian("C2-1");
+                pasien.setNo_Antrian(noAntrian);
                 pasien.setAlamat(alamat);
                 pasien.setNik(nik);
                 pasien.setPhone(phoneNum);
@@ -90,7 +90,8 @@ public class RegisterPasienActivity extends AppCompatActivity {
                     public void onClick(View view) {
                         Toast.makeText(RegisterPasienActivity.this, "Poli Gigi", Toast.LENGTH_SHORT).show();
                         bottomSheetDialog.dismiss();
-                        valuePoli = "Poli Gigi";
+                        valuePoli = "Poli Gigi Umum";
+                        codePoli = "A";
                         check = true;
                     }
                 });
@@ -101,6 +102,7 @@ public class RegisterPasienActivity extends AppCompatActivity {
                         Toast.makeText(RegisterPasienActivity.this, "Poli Bedah Syaraf", Toast.LENGTH_SHORT).show();
                         bottomSheetDialog.dismiss();
                         valuePoli = "Poli Bedah Syaraf";
+                        codePoli = "B";
                         check = true;
                     }
                 });
@@ -111,6 +113,7 @@ public class RegisterPasienActivity extends AppCompatActivity {
                         Toast.makeText(RegisterPasienActivity.this, "Poli THT", Toast.LENGTH_SHORT).show();
                         bottomSheetDialog.dismiss();
                         valuePoli = "Poli THT";
+                        codePoli = "C";
                         check = true;
                     }
                 });
@@ -121,6 +124,7 @@ public class RegisterPasienActivity extends AppCompatActivity {
                         Toast.makeText(RegisterPasienActivity.this, "Poli Jantung", Toast.LENGTH_SHORT).show();
                         bottomSheetDialog.dismiss();
                         valuePoli = "Poli Jantung";
+                        codePoli = "D";
                         check = true;
                     }
                 });
@@ -131,6 +135,7 @@ public class RegisterPasienActivity extends AppCompatActivity {
                         Toast.makeText(RegisterPasienActivity.this, "Poli Anak", Toast.LENGTH_SHORT).show();
                         bottomSheetDialog.dismiss();
                         valuePoli = "Poli Anak";
+                        codePoli = "E";
                         check = true;
                     }
                 });
@@ -160,6 +165,7 @@ public class RegisterPasienActivity extends AppCompatActivity {
                         Toast.makeText(RegisterPasienActivity.this, value.getText().toString(), Toast.LENGTH_SHORT).show();
                         bottomSheetDialog.dismiss();
                         valueDk = value.getText().toString();
+                        codeDk = "1";
                         check = true;
 
                     }
@@ -172,6 +178,7 @@ public class RegisterPasienActivity extends AppCompatActivity {
                         Toast.makeText(RegisterPasienActivity.this, value.getText().toString(), Toast.LENGTH_SHORT).show();
                         bottomSheetDialog.dismiss();
                         valueDk = value.getText().toString();
+                        codeDk = "2";
                         check = true;
                     }
                 });
@@ -183,6 +190,7 @@ public class RegisterPasienActivity extends AppCompatActivity {
                         Toast.makeText(RegisterPasienActivity.this, value.getText().toString(), Toast.LENGTH_SHORT).show();
                         bottomSheetDialog.dismiss();
                         valueDk = value.getText().toString();
+                        codeDk = "3";
                         check = true;
                     }
                 });
@@ -194,17 +202,7 @@ public class RegisterPasienActivity extends AppCompatActivity {
                         Toast.makeText(RegisterPasienActivity.this, value.getText().toString(), Toast.LENGTH_SHORT).show();
                         bottomSheetDialog.dismiss();
                         valueDk = value.getText().toString();
-                        check = true;
-                    }
-                });
-
-                bottomSheetView.findViewById(R.id.dokter_lima).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Button value = (Button) view;
-                        Toast.makeText(RegisterPasienActivity.this, value.getText().toString(), Toast.LENGTH_SHORT).show();
-                        bottomSheetDialog.dismiss();
-                        valueDk = value.getText().toString();
+                        codeDk = "4";
                         check = true;
                     }
                 });
@@ -232,6 +230,9 @@ public class RegisterPasienActivity extends AppCompatActivity {
          keluhan = binding.etKeluhan.getText().toString().trim();
          poli = valuePoli;
          dokter = valueDk;
+         int id = 1;
+         noAntrian = codePoli+codeDk+"-"+id++;
+
 
 //        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
 //        date = df.format(Calendar.getInstance().getTime());

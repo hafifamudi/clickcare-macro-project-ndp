@@ -97,26 +97,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
-        android:text="Dr. Heni Rahmawati"
-        android:inputType="textCapCharacters"
-        android:textAlignment="textStart"
-        android:padding="20dp"
-        android:textColor="#121212"
-        android:textSize="13sp"
-        android:fontFamily="@font/poppins_medium"
-        android:layout_marginTop="16dp"
-        />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray"/>
-
-    <Button
-        android:id="@+id/dokter_lima"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
         android:text="Dr. Sri Lestari"
         android:inputType="textCapCharacters"
         android:textAlignment="textStart"

@@ -17,17 +17,17 @@ public class AntrianPasienActivity extends AppCompatActivity {
     private ActivityAntrianPasienBinding binding;
 
 
-    final ActivityResultLauncher<Intent> resultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
-            result -> {
-                if (result.getResultCode() == DetailRegistrasi.RESULT_CODE && result.getData() != null) {
-                    Pasien pasien = result.getData().getParcelableExtra(DetailRegistrasi.EXTRA_SELECTED_VALUE);
-                    binding.antrianName.setText(pasien.getName());
-                    binding.antrianDate.setText(pasien.getDate());
-                    binding.antrianKeluhan.setText(pasien.getKeluhan());
-                    binding.antrianDokter.setText(pasien.getDokter());
-                    binding.noAntrian.setText(pasien.getNo_Antrian());
-                }
-            });
+//    final ActivityResultLauncher<Intent> resultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+//            result -> {
+//                if (result.getResultCode() == DetailRegistrasi.RESULT_CODE && result.getData() != null) {
+//                    Pasien pasien = result.getData().getParcelableExtra(DetailRegistrasi.EXTRA_SELECTED_VALUE);
+//                    binding.antrianName.setText(pasien.getName());
+//                    binding.antrianDate.setText(pasien.getDate());
+//                    binding.antrianKeluhan.setText(pasien.getKeluhan());
+//                    binding.antrianDokter.setText(pasien.getDokter());
+//                    binding.noAntrian.setText(pasien.getNo_Antrian());
+//                }
+//            });
 
 
     @Override
