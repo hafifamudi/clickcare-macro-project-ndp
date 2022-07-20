@@ -95,6 +95,7 @@
             >
 
             <TextView
+                android:id="@+id/antrian_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="April Mei"
@@ -105,6 +106,7 @@
                 />
 
             <TextView
+                android:id="@+id/antrian_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Rabu, 00:30"
@@ -116,6 +118,7 @@
                 />
 
             <TextView
+                android:id="@+id/antrian_keluhan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Keluhan"
@@ -127,6 +130,7 @@
                 />
 
             <TextView
+                android:id="@+id/antrian_dokter"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Dr. Bagus Budiono"
@@ -163,6 +167,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/no_antrian"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="A3-1"
@@ -205,7 +210,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-
 
                 <TextView
                     android:layout_width="match_parent"

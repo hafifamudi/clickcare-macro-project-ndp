@@ -3,6 +3,8 @@ package com.docoding.clickcare.activities.pasien;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -23,6 +25,7 @@ import com.docoding.clickcare.databinding.FragmentBookAntrianPasienBinding;
 import com.docoding.clickcare.databinding.FragmentHomeUserLoginBinding;
 import com.docoding.clickcare.helper.Constants;
 import com.docoding.clickcare.helper.PreferenceManager;
+import com.docoding.clickcare.model.Pasien;
 import com.docoding.clickcare.state.GlobalUserState;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -38,6 +41,7 @@ import kotlin.jvm.internal.PackageReference;
 public class BookAntrianPasien extends Fragment {
     private FragmentBookAntrianPasienBinding binding;
     private FirebaseAuth firebaseAuth;
+
 
     public BookAntrianPasien() {
         // Required empty public constructor

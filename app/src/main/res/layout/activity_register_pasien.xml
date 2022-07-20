@@ -113,6 +113,7 @@
                 android:text="Nama" />
 
             <EditText
+                android:id="@+id/etName"
                 android:layout_width="370dp"
                 android:layout_height="wrap_content"
                 android:padding="16dp"
@@ -136,6 +137,7 @@
                 android:text="NIK" />
 
             <EditText
+                android:id="@+id/etNIK"
                 android:layout_width="370dp"
                 android:layout_height="wrap_content"
                 android:padding="16dp"
@@ -159,6 +161,7 @@
                 android:text="Alamat" />
 
             <EditText
+                android:id="@+id/etAlamat"
                 android:layout_width="370dp"
                 android:layout_height="wrap_content"
                 android:padding="16dp"
@@ -182,6 +185,7 @@
                 android:text="No HP" />
 
             <EditText
+                android:id="@+id/etPhone"
                 android:layout_width="370dp"
                 android:layout_height="wrap_content"
                 android:padding="16dp"
@@ -205,12 +209,12 @@
                 android:text="No BPJS" />
 
             <EditText
+                android:id="@+id/etBPJS"
                 android:layout_width="370dp"
                 android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:background="@drawable/form_user_input"
                 android:layout_marginTop="10dp"
-                />
+                android:background="@drawable/form_user_input"
+                android:padding="16dp" />
         </LinearLayout>
 
         <!--        Keluhan Form-->
@@ -228,6 +232,7 @@
                 android:text="Keluhan" />
 
             <EditText
+                android:id="@+id/etKeluhan"
                 android:layout_width="370dp"
                 android:layout_height="105dp"
                 android:padding="16dp"
