@@ -89,7 +89,6 @@ public class ChatDoctorActivity extends BaseActivity {
             }
 
             public void onFinish() {
-                binding.chatDuration.setText("Selesai");
                 Intent listChatDoctor = new Intent(ChatDoctorActivity.this, DoctorConsultantActivity.class);
                 startActivity(listChatDoctor);
                 finish();

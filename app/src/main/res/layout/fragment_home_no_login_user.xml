@@ -26,22 +26,13 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/thumbnail_card"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/img_item_photo_user"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:layout_margin="10dp"
-                    app:cardCornerRadius="48dp"
-                    app:cardElevation="0dp">
-
-                    <ImageView
-                        android:id="@+id/img_item_photo_user"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/user_profile" />
-
-                </androidx.cardview.widget.CardView>
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/user_profile" />
 
                 <FrameLayout
                     android:layout_width="wrap_content"

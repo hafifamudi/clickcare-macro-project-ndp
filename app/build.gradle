@@ -71,4 +71,5 @@ dependencies {
 
 //    using easy preference package
     implementation 'com.pixplicity.easyprefs:EasyPrefs:1.10.0'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 }
