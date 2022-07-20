@@ -273,7 +273,7 @@ tools:context=".activities.pasien.BookAntrianPasien">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="No.Antrian"
+                    android:text="Sisa"
                     android:textAlignment="center"
                     android:fontFamily="@font/inter_medium"
                     android:textColor="@color/textColorPrimary"

@@ -16,6 +16,7 @@ public class Constants {
     public static final String KEY_LOGIN_INFO = "pasien";
     public static final String KEY_NO_ANTRIAN = "pasien";
     public static final String KEY_NAMA_PASIEN = "name_pasien";
+    public static final String KEY_ANTRIAN_PASIEN = "no_antrian";
     public static final String KEY_KELUHAN_PASIEN = "keluhan_pasien";
     public static final String KEY_WAKTU_PASIEN = "waktu_pasien";
     public static final String KEY_DOKTER_PASIEN = "dokter_pasien";

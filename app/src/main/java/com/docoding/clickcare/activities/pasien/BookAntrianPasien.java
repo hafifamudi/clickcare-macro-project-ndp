@@ -64,11 +64,19 @@ public class BookAntrianPasien extends Fragment {
         binding = FragmentBookAntrianPasienBinding.inflate(inflater, container, false);
         View viewBinding = binding.getRoot();
 
-        if (Prefs.getString(Constants.KEY_WAKTU_PASIEN) != null){
+        if (!Prefs.getString(Constants.KEY_WAKTU_PASIEN).isEmpty()) {
+            binding.thereIsAntrian.setVisibility(View.VISIBLE);
             binding.nothingAntrian.setVisibility(View.GONE);
+
+            binding.antrianName.setText(Prefs.getString(Constants.KEY_NAMA_PASIEN));
+            binding.antrianDate.setText(Prefs.getString(Constants.KEY_WAKTU_PASIEN));
+            binding.antrianKeluhan.setText(Prefs.getString(Constants.KEY_KELUHAN_PASIEN));
+            binding.antrianDokter.setText(Prefs.getString(Constants.KEY_DOKTER_PASIEN));
+            binding.antrianDokter.setText(Prefs.getString(Constants.KEY_ANTRIAN_PASIEN));
         }
 
-        if (Prefs.getString(Constants.KEY_WAKTU_PASIEN) ==  null) {
+        if (Prefs.getString(Constants.KEY_WAKTU_PASIEN).isEmpty()) {
+            binding.thereIsAntrian.setVisibility(View.GONE);
             binding.nothingAntrian.setVisibility(View.VISIBLE);
         }
 

@@ -49,11 +49,11 @@ public class DetailRegistrasi extends AppCompatActivity {
                 pasien.setDokter(dokter);
                 pasien.setNo_Antrian(noAntrian);
 
-                Prefs.putString(Constants.KEY_NAME_DOCTOR, name);
+                Prefs.putString(Constants.KEY_NAMA_PASIEN, name);
                 Prefs.putString(Constants.KEY_KELUHAN_PASIEN, keluhan);
                 Prefs.putString(Constants.KEY_WAKTU_PASIEN, date);
                 Prefs.putString(Constants.KEY_DOKTER_PASIEN, dokter);
-
+                Prefs.putString(Constants.KEY_ANTRIAN_PASIEN, noAntrian);
 //                Intent resultIntent = new Intent();
 //                resultIntent.putExtra(EXTRA_SELECTED_VALUE, pasien);
 //                setResult(RESULT_CODE, resultIntent);
