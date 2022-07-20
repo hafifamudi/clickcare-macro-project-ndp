@@ -1,31 +1,86 @@
 package com.docoding.clickcare.activities.pasien;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
-import com.docoding.clickcare.R;
+import com.docoding.clickcare.activities.pasien.register.RegisterPasienViewModel;
+import com.docoding.clickcare.databinding.ActivityDetailRegistrasiBinding;
+import com.docoding.clickcare.model.Pasien;
 import com.docoding.clickcare.state.GlobalUserState;
 
 public class DetailRegistrasi extends AppCompatActivity {
-    Button registrasiAcc;
+
+    private RegisterPasienViewModel viewModel;
+    private ActivityDetailRegistrasiBinding binding;
+    public static final String EXTRA_PASIEN = "extra_pasien";
+    private String name,nik,alamat,phoneNum,bpjsNum,keluhan,poli,dokter, date;
+
+    public static final String EXTRA_SELECTED_VALUE = "extra_selected_value";
+    public static final int RESULT_CODE = 110;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail_registrasi);
+        binding = ActivityDetailRegistrasiBinding.inflate(getLayoutInflater());
+        View viewBinding = binding.getRoot();
+        setContentView(viewBinding);
 
-        registrasiAcc = findViewById(R.id.registrasi_acc);
-        registrasiAcc.setOnClickListener(new View.OnClickListener() {
+        viewModel = new ViewModelProvider(this).get(RegisterPasienViewModel.class);
+
+        getData();
+        setWidget();
+
+        binding.registrasiAcc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                getData();
+                viewModel.addRegisterToCloud(name, nik, alamat, phoneNum, bpjsNum, keluhan, poli, dokter, date);
+
+                Pasien pasien = new Pasien();
+                pasien.setName(name);
+                pasien.setDate(date);
+                pasien.setKeluhan(keluhan);
+                pasien.setDokter(dokter);
+                pasien.setNo_Antrian(binding.noAntrianRegister.toString().trim());
+
                 Intent homeActivity = new Intent(DetailRegistrasi.this, HomeActivity.class);
                 GlobalUserState.userSuccessOrder = "ACCEPT";
                 startActivity(homeActivity);
             }
         });
+
     }
+
+    private void getData() {
+
+        Pasien pasien = getIntent().getParcelableExtra(EXTRA_PASIEN);
+        name = pasien.getName();
+        nik = pasien.getNik();
+        alamat = pasien.getAlamat();
+        phoneNum = pasien.getPhone();
+        bpjsNum = pasien.getBpjs();
+        keluhan = pasien.getKeluhan();
+        poli = pasien.getPoli();
+        dokter = pasien.getDokter();
+        date = pasien.getDate();
+
+    }
+
+    private void setWidget() {
+        Pasien pasien = getIntent().getParcelableExtra(EXTRA_PASIEN);
+        binding.nameRegister.setText(pasien.getName());
+        binding.dateRegister.setText(pasien.getDate());
+        binding.keluhanRegister.setText(pasien.getKeluhan());
+        binding.dokterRegister.setText(pasien.getDokter());
+        binding.noAntrianRegister.setText(pasien.getNo_Antrian());
+    }
+
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
 }

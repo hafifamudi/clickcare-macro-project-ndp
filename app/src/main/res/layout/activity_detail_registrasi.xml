@@ -22,6 +22,7 @@
             android:padding="17dp">
 
             <Button
+                android:id="@+id/btnBac"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="-10dp"
@@ -96,6 +97,7 @@
             >
 
             <TextView
+                android:id="@+id/nameRegister"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="April Mei"
@@ -106,6 +108,7 @@
                 />
 
             <TextView
+                android:id="@+id/date_register"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Rabu, 00:30"
@@ -117,6 +120,7 @@
                 />
 
             <TextView
+                android:id="@+id/keluhanRegister"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Keluhan"
@@ -128,6 +132,7 @@
                 />
 
             <TextView
+                android:id="@+id/dokterRegister"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Dr. Bagus Budiono"
@@ -150,7 +155,7 @@
            <TextView
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
-               android:text="No.Antrian Kamu A3-1"
+               android:text="No.Antrian Kamu"
                android:textAlignment="center"
                android:fontFamily="@font/inter_medium"
                android:textColor="@color/textColorPrimary"
@@ -158,6 +163,7 @@
                />
 
            <TextView
+               android:id="@+id/no_antrian_register"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:text="A3-1"
@@ -171,7 +177,7 @@
 
     <LinearLayout
         android:layout_width="370dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="17dp"
         android:layout_marginRight="17dp"
@@ -213,7 +219,7 @@
         android:textColor="@color/white"
         android:fontFamily="@font/poppins_medium"
         android:text="Pesan Sekarang"
-        android:layout_marginTop="103dp"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="37dp"
         android:paddingTop="12dp"
         android:paddingBottom="12dp"

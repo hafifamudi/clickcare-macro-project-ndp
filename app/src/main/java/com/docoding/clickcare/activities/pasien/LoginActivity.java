@@ -65,6 +65,7 @@ public class LoginActivity extends AppCompatActivity {
                 .setUseDefaultSharedPreference(true)
                 .build();
 
+
         // set up google sign in
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -237,4 +238,5 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
     }
+
 }
