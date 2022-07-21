@@ -14,6 +14,7 @@ public class Constants {
 
     // firebase cloud messaging
     public static final String KEY_LOGIN_INFO = "pasien";
+    public static final String KEY_NO_ANTRIAN = "pasien";
     public static final String KEY_COLLECTION_USERS = "Users";
     public static final String KEY_COLLECTION_DOCTORS = "doctor-register";
     public static final String KEY_NAME = "name";

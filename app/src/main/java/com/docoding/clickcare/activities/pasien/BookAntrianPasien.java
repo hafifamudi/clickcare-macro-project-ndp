@@ -33,6 +33,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.pixplicity.easyprefs.library.Prefs;
 
 import kotlin.jvm.internal.PackageReference;
@@ -41,7 +42,7 @@ import kotlin.jvm.internal.PackageReference;
 public class BookAntrianPasien extends Fragment {
     private FragmentBookAntrianPasienBinding binding;
     private FirebaseAuth firebaseAuth;
-
+    private FirebaseFirestore firebaseFirestore;
 
     public BookAntrianPasien() {
         // Required empty public constructor
@@ -57,7 +58,7 @@ public class BookAntrianPasien extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseFirestore = FirebaseFirestore.getInstance();
 
         // Inflate the layout for this fragment
         binding = FragmentBookAntrianPasienBinding.inflate(inflater, container, false);

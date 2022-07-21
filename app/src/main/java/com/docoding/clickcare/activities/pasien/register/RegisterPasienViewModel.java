@@ -15,6 +15,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.ServerTimestamp;
 import com.pixplicity.easyprefs.library.Prefs;
@@ -24,26 +25,30 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class RegisterPasienViewModel extends ViewModel {
     private static final String TAG = RegisterPasienViewModel.class.getName();
-
+    private static int antrianRunningNumber;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     public void addRegisterToCloud(String name, String nik, String alamat, String phone, String bpjs,
                                    String keluhan, String poli, String dokter, String date, String noAntrian) {
 
+        getLastAntrianPasien();
+
+        Log.e("nomor antrian", String.valueOf(antrianRunningNumber));
 
         CollectionReference cr = db.collection("pasien-register");
         Map<String, Object> pasienRegister = new HashMap<>();
         pasienRegister.put("alamat", alamat);
-        pasienRegister.put("antrian", Prefs.getString("antrian"));
+        pasienRegister.put("antrian", (noAntrian + 1));
         pasienRegister.put("createdAt", FieldValue.serverTimestamp());
         pasienRegister.put("dokter", dokter);
         pasienRegister.put("keluhan", keluhan);
         pasienRegister.put("nama", name);
         pasienRegister.put("nik", nik);
-        pasienRegister.put("no_antrian", noAntrian+Prefs.getString("antrian"));
+        pasienRegister.put("no_antrian", noAntrian + String.valueOf(noAntrian + 1));
         pasienRegister.put("no_bpjs", bpjs);
         pasienRegister.put("no_telepon", phone);
         pasienRegister.put("poli", poli);
@@ -82,15 +87,22 @@ public class RegisterPasienViewModel extends ViewModel {
         date = sdf.format(c.getTime());  // dt is now the new date
 
         db.collection("pasien-register")
-                .orderBy("createdAt")
-                .whereEqualTo("status", "Konfirmasi")
+                .orderBy("createdAt", Query.Direction.DESCENDING)
                 .whereEqualTo("waktu", date)
                 .limitToLast(1)
                 .get().addOnCompleteListener(task -> {
             if (task.isSuccessful() && task.getResult() != null && task.getResult().getDocuments().size() > 0) {
                 DocumentSnapshot documentSnapshot = task.getResult().getDocuments().get(0);
-                Prefs.putString("antrian", documentSnapshot.getString("antrian"));
+                Log.e("last antrian", documentSnapshot.toString());
+                int antrian_number = Objects.requireNonNull(
+                        documentSnapshot.getLong(Constants.KEY_NO_ANTRIAN)
+                ).intValue();
+
+                Log.e("nomor antrian", String.valueOf(antrian_number));
+                antrianRunningNumber = antrian_number > 0 ? antrian_number : 1;
             }
+        }).addOnFailureListener(e -> {
+            Log.e("nomor antrian", e.getMessage());
         });
     }
 }
