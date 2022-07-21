@@ -64,6 +64,13 @@ public class BookAntrianPasien extends Fragment {
         binding = FragmentBookAntrianPasienBinding.inflate(inflater, container, false);
         View viewBinding = binding.getRoot();
 
+        if (Prefs.getString(Constants.KEY_WAKTU_PASIEN) != null){
+            binding.nothingAntrian.setVisibility(View.GONE);
+        }
+
+        if (Prefs.getString(Constants.KEY_WAKTU_PASIEN) ==  null) {
+            binding.nothingAntrian.setVisibility(View.VISIBLE);
+        }
 
         if (Prefs.getString(Constants.KEY_EMAIL) == null) {
             BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(

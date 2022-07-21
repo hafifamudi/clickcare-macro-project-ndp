@@ -233,7 +233,7 @@ public class RegisterPasienActivity extends AppCompatActivity {
          poli = valuePoli;
          dokter = valueDk;
          int id = 1;
-         noAntrian = codePoli+codeDk+"-";
+         noAntrian = codePoli+codeDk+"-"+id;
 
 
 //        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");

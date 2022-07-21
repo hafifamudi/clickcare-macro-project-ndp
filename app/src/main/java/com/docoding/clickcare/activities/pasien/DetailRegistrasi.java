@@ -9,8 +9,10 @@ import android.view.View;
 
 import com.docoding.clickcare.activities.pasien.register.RegisterPasienViewModel;
 import com.docoding.clickcare.databinding.ActivityDetailRegistrasiBinding;
+import com.docoding.clickcare.helper.Constants;
 import com.docoding.clickcare.model.Pasien;
 import com.docoding.clickcare.state.GlobalUserState;
+import com.pixplicity.easyprefs.library.Prefs;
 
 public class DetailRegistrasi extends AppCompatActivity {
 
@@ -38,7 +40,7 @@ public class DetailRegistrasi extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 getData();
-                viewModel.addRegisterToCloud(name, nik, alamat, phoneNum, bpjsNum, keluhan, poli, dokter, date, noAntrian);
+//              viewModel.addRegisterToCloud(name, nik, alamat, phoneNum, bpjsNum, keluhan, poli, dokter, date, noAntrian);
 
                 Pasien pasien = new Pasien();
                 pasien.setName(name);
@@ -46,6 +48,11 @@ public class DetailRegistrasi extends AppCompatActivity {
                 pasien.setKeluhan(keluhan);
                 pasien.setDokter(dokter);
                 pasien.setNo_Antrian(noAntrian);
+
+                Prefs.putString(Constants.KEY_NAME_DOCTOR, name);
+                Prefs.putString(Constants.KEY_KELUHAN_PASIEN, keluhan);
+                Prefs.putString(Constants.KEY_WAKTU_PASIEN, date);
+                Prefs.putString(Constants.KEY_DOKTER_PASIEN, dokter);
 
 //                Intent resultIntent = new Intent();
 //                resultIntent.putExtra(EXTRA_SELECTED_VALUE, pasien);
